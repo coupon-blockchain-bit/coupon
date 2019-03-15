@@ -1,0 +1,91 @@
+{
+  "name": "global-trade-network",
+  "x-type": "hlfv1",
+  "description": "The network to be in if you want to stay in the global trade business",
+  "version": "1.0.0",
+  "client": {
+    "organization": "Org1",
+    "credentialStore": {
+      "path": "/tmp/hfc-kvs",
+      "cryptoStore": {
+        "path": "/tmp/hfc-cvs"
+      }
+    }
+  },
+  "channels": {
+  "name":"mychannel",
+  "chaincode":{
+  "name":"mycc",
+  "version":"1.0"
+ }
+},
+  "organizations": {
+    "Org1": {
+      "mspid": "Org1MSP",
+      "peers": [
+        "peer0.org1.example.com",
+        "peer1.org1.example.com"
+      ],
+      "certificateAuthorities": [
+        "ca-org1"
+      ],
+      "adminPrivateKey": "-----BEGIN PRIVATE KEY-----\nMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg0EkJLH/CRzBaLWW9\noF1EawSxs1MxRir91hPKuThuqdyhRANCAASldsHcZa5KfOeq383COEE49DRs9lgz\nIL+6V0pXYJtNTDsaA5yiovp9iPH3lp7oHEfpHf9CAelU1LSeSbYLnad5\n-----END PRIVATE KEY-----",
+      "signedCert": "-----BEGIN CERTIFICATE-----\nMIICKzCCAdGgAwIBAgIRANIY9pk2Z2zCZrxTI8JkVOUwCgYIKoZIzj0EAwIwczEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHDAaBgNVBAMTE2Nh\nLm9yZzEuZXhhbXBsZS5jb20wHhcNMTkwMzEwMDQwNzAzWhcNMjkwMzA3MDQwNzAz\nWjBsMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMN\nU2FuIEZyYW5jaXNjbzEPMA0GA1UECxMGY2xpZW50MR8wHQYDVQQDDBZBZG1pbkBv\ncmcxLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEpXbB3GWu\nSnznqt/NwjhBOPQ0bPZYMyC/uldKV2CbTUw7GgOcoqL6fYjx95ae6BxH6R3/QgHp\nVNS0nkm2C52neaNNMEswDgYDVR0PAQH/BAQDAgeAMAwGA1UdEwEB/wQCMAAwKwYD\nVR0jBCQwIoAg6e2AhIrRzSyoplN3B3TxqpxjJofXreoEMF5uvisOc+AwCgYIKoZI\nzj0EAwIDSAAwRQIhAKrbEHErncPxnfV34t1sgOKkjpgXTYYC7cSFjQttrCCdAiBN\nFJPJ55bWLHHgnbEEvLbD038Zs3xB7NyvMl1NuV4Mkg==\n-----END CERTIFICATE-----"
+    },
+    "Org2": {
+      "mspid": "Org2MSP",
+      "peers": [
+        "peer0.org2.example.com"
+      ]
+    }
+  },
+  "orderers": {
+    "zyl.orderer": {
+      "url": "grpcs://localhost:7050",
+      "grpcOptions": {
+        "ssl-target-name-override": "orderer.example.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts":"-----BEGIN CERTIFICATE-----\nMIICWDCCAf+gAwIBAgIQFWpJfZHpmpi/fvYzHP4WUjAKBggqhkjOPQQDAjBsMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEUMBIGA1UEChMLZXhhbXBsZS5jb20xGjAYBgNVBAMTEXRsc2NhLmV4\nYW1wbGUuY29tMB4XDTE5MDMxMDA0MDcwM1oXDTI5MDMwNzA0MDcwM1owWDELMAkG\nA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFu\nY2lzY28xHDAaBgNVBAMTE29yZGVyZXIuZXhhbXBsZS5jb20wWTATBgcqhkjOPQIB\nBggqhkjOPQMBBwNCAASmUhESk1QP/TN238tUoFA2b3UGolxN9R5yP+K91kblTpa0\n+jah/cwd9G8ITAN5HnH9/tMtVVuT17pzUPRKkxG1o4GWMIGTMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADArBgNVHSMEJDAigCBHJqnExNclpP9+FaQPkVw3QS4KxlpWmu70qTFAseXz/DAn\nBgNVHREEIDAeghNvcmRlcmVyLmV4YW1wbGUuY29tggdvcmRlcmVyMAoGCCqGSM49\nBAMCA0cAMEQCICY6iDumsg3GhHFlwhO9PRk3A5RN/eI5hPcJj7C/O7A8AiBRiYiY\nVj+x39x1gNRfrNFAj6x4pojtYyyrlgUeWCFT2w==\n-----END CERTIFICATE-----"
+    }
+  },
+  "peers": {
+    "zyl.peer0.org1": {
+      "url": "grpcs://localhost:7051",
+      "eventUrl": "grpcs://localhost:7053",
+      "grpcOptions": {
+        "ssl-target-name-override": "peer0.org1.example.com",
+        "grpc.http2.keepalive_time": 15
+      },
+      "tlsCACerts":"-----BEGIN CERTIFICATE-----\nMIICZzCCAg6gAwIBAgIRAPJNiiH7n3vTpLMhJR6x0eowCgYIKoZIzj0EAwIwdjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHzAdBgNVBAMTFnRs\nc2NhLm9yZzEuZXhhbXBsZS5jb20wHhcNMTkwMzEwMDQwNzAzWhcNMjkwMzA3MDQw\nNzAzWjBbMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UE\nBxMNU2FuIEZyYW5jaXNjbzEfMB0GA1UEAxMWcGVlcjAub3JnMS5leGFtcGxlLmNv\nbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFXQ4OHinmvbgCBCwDmW7qAMgjB0\nQtwV0DPPI7FKFuIXA5TK9yA/lzG8ldlmynBS+JMZ0iHp7j5XK4aSn35kyxWjgZcw\ngZQwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcD\nAjAMBgNVHRMBAf8EAjAAMCsGA1UdIwQkMCKAIKuHJiSAkOzr+jR6cV2QsczkA3Qc\n0DsK6s4u31xt3i00MCgGA1UdEQQhMB+CFnBlZXIwLm9yZzEuZXhhbXBsZS5jb22C\nBXBlZXIwMAoGCCqGSM49BAMCA0cAMEQCIAgZbP7+1njXkjsrVzsLBn7ZLIdpvBfB\njEH5N3H8F0o+AiAlbsyZrDbnlXL+Z8o5zpba7NSMJnRvZ7moI+o+sNzIHA==\n-----END CERTIFICATE-----"
+    },
+    "zyl.peer0.org2": {
+      "url": "grpcs://localhost:8051",
+      "eventUrl": "grpcs://localhost:8053",
+      "grpcOptions": {
+        "ssl-target-name-override": "peer0.org2.example.com"
+      },
+      "tlsCACerts": {
+        "path": "src/test/fixture/sdkintegration/e2e-2Orgs/v1.3/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/server.crt"
+      }
+    }
+  },
+  "certificateAuthorities": {
+    "ca-org1": {
+      "url": "https://localhost:7054",
+      "httpOptions": {
+        "verify": true
+      },
+      "tlsCACerts": {
+        "path": "peerOrganizations/org1.example.com/ca/org1.example.com-cert.pem"
+      },
+      "registrar": [
+        {
+          "enrollId": "admin",
+          "enrollSecret": "adminpw"
+        }
+      ],
+      "caName": "caNameHere"
+    }
+  }
+}
