@@ -1,8 +1,12 @@
 version: '2'
 
 services:
-  samplewar:
+  bonuswar:
     build:
       context: .
     ports:
+<<<<<<< HEAD
       - 8080:8080
+=======
+      - "8080:8080"
+>>>>>>> 1853ea98b1275b553759c5742b376ff9759735be
