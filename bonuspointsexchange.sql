@@ -12,7 +12,7 @@
 
 # Host: 127.0.0.1    Database: bonuspointsexchange
 # ------------------------------------------------------
-# Server version 5.5.28
+# Server version 8.0.15
 
 #
 # Source for table order
