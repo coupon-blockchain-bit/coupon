@@ -31,16 +31,16 @@ public class UploadIconServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8"); 
 		try {
-			//ÉÏ´«²Ù×÷
+			//ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½
 			SmartUpload smart = new SmartUpload();
-			smart.initialize(this.getServletConfig(),request,response); // ³õÊ¼»¯ÉÏ´«²Ù×÷
-			smart.upload(); // ÉÏ´«×¼±¸
-			IpTimeStamp its = new IpTimeStamp(request.getRemoteAddr());//»ñÈ¡ÇëÇóµÄÖ÷»úµÄip
-			String ext = smart.getFiles().getFile(0).getFileExt();//È¡µÃÎÄ¼þºó×º
-			String fileName = its.getIPTimeRand() + "." + ext;//Æ´´ÕÐÂµÄÃû³Æ
+			smart.initialize(this.getServletConfig(),request,response); // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½
+			smart.upload(); // ï¿½Ï´ï¿½×¼ï¿½ï¿½
+			IpTimeStamp its = new IpTimeStamp(request.getRemoteAddr());//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ip
+			String ext = smart.getFiles().getFile(0).getFileExt();//È¡ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½×º
+			String fileName = its.getIPTimeRand() + "." + ext;//Æ´ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
 			String filePath = this.getServletContext().getRealPath("/");
 			//filePath.replaceAll("\\\\", "\\\\\\\\");
-			//fuck£¬Â·¾¶´æ´¢µ½MysqlÊý¾Ý¿âÖÐ£¬Â·¾¶ÖÐµÄÐ±¸ÜÏûÊ§£¬²»ÖªµÀÎªÊ²Ã´replaceAllº¯Êý²»¹ÜÓÃ£¬Ö»ÓÐ×Ô¼ºÆ´´ÕÂ·¾¶ÁË
+			//fuckï¿½ï¿½Â·ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½Mysqlï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð£ï¿½Â·ï¿½ï¿½ï¿½Ðµï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½ÎªÊ²Ã´replaceAllï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½Ö»ï¿½ï¿½ï¿½Ô¼ï¿½Æ´ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½
 			String str =  "images\\\\shopLogo" + "\\\\" + fileName;
 			String []str1 =  filePath.split("\\\\");
 			String str2 = "";
@@ -48,29 +48,29 @@ public class UploadIconServlet extends HttpServlet {
 				str2 += str1[i] + "\\\\";
 			}
 			//System.out.println("str2="+str2);	
-			filePath = str2 + str;//Æ´´Õ³ÉµÄÎÄ¼þÂ·¾¶		
-			//System.out.println("fielPath="+filePath);//´òÓ¡ÎÄ¼þ´æ´¢Â·¾¶
-			String shopName = (String)request.getSession().getAttribute("shopName");// »ñÈ¡µÇÂ¼µÄÉÌ¼ÒµÄÃû³Æ
-			if (fileName.matches("^\\w+\\.(jpg|gif|png|bmp)$")) { //¼ì²éÎÄ¼þÀàÐÍÊÇ·ñ·ûºÏÒªÇó
-				//ÉÏ´«µ½ÎÄ¼þ¼ÐÖÐ
+			filePath = str2 + str;//Æ´ï¿½Õ³Éµï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½		
+			//System.out.println("fielPath="+filePath);//ï¿½ï¿½Ó¡ï¿½Ä¼ï¿½ï¿½æ´¢Â·ï¿½ï¿½
+			String shopName = (String)request.getSession().getAttribute("shopName");// ï¿½ï¿½È¡ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ì¼Òµï¿½ï¿½ï¿½ï¿½ï¿½
+			if (fileName.matches("^\\w+\\.(jpg|gif|png|bmp)$")) { //ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½
+				//ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				smart.getFiles()
 						.getFile(0)
-						.saveAs(filePath);// ÎÄ¼þ±£´æ
-				//ÈôÓÃ»§ÒÑ¾­ÉÏ´«¹ýÍ·Ïñ£¬ÐèÒª½«ÏÈÇ°ÉÏ´«µÄÍ·ÏñÉ¾³ý£¬·ÀÖ¹ÓÃ»§¶à´ÎÉÏ´«£¬Õ¼ÓÃÓ²ÅÌ×ÊÔ´
-				String oldFileName = UploadHeadIconManger.queryImgURL(shopName);//Ô­ÏÈÊý¾Ý¿âÖÐµÄÍ¼Æ¬µÄÃû×Ö£¬Æ´´Õ³ÉµØÖ·£¬»¹ÒªÅÐ¶ÏÆäÊÇ·ñºÍÄ¬ÈÏµØÖ·Ò»Ñù
-				String imageURL = str2 + "images\\\\shopLogo" + "\\\\" + oldFileName;//¾ÉÍ·ÏñÎÄ¼þÂ·¾¶
-				//ÈôÒ»ÑùÔò²»ÄÜÉ¾³ý£¬·ñÔòÉ¾³ý,Ä¬ÈÏÍ¼±êÎªdefaultIcon.jpg
-				String str3 = str2 + "images\\\\shopLogo" + "\\\\" + "defaultIcon.jpg";//Ä¬ÈÏÍ·ÏñµÄµØÖ·
+						.saveAs(filePath);// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+				//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ñ¾ï¿½ï¿½Ï´ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ï´ï¿½ï¿½ï¿½Í·ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½Ô´
+				String oldFileName = UploadHeadIconManger.queryImgURL(shopName);//Ô­ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ðµï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½Æ´ï¿½Õ³Éµï¿½Ö·ï¿½ï¿½ï¿½ï¿½Òªï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ä¬ï¿½Ïµï¿½Ö·Ò»ï¿½ï¿½
+				String imageURL = str2 + "images\\\\shopLogo" + "\\\\" + oldFileName;//ï¿½ï¿½Í·ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½
+				//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½,Ä¬ï¿½ï¿½Í¼ï¿½ï¿½ÎªdefaultIcon.jpg
+				String str3 = str2 + "images\\\\shopLogo" + "\\\\" + "defaultIcon.jpg";//Ä¬ï¿½ï¿½Í·ï¿½ï¿½Äµï¿½Ö·
 				if(!(str3.equals(imageURL))) {
-					// É¾³ýÎÄ¼þ¼ÐÖÐµÄÍ¼Æ¬
+					// É¾ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ðµï¿½Í¼Æ¬
 					File imgFile = new File(imageURL);
 					//System.out.println(path);
 					if (imgFile.exists()) {
 						imgFile.delete();
 					}
 				}
-				//¸üÐÂÊý¾Ý¿â,½«ÎÄ¼þ´æ´¢µÄÂ·¾¶±£´æµ½Êý¾Ý¿âÖÐ
-				boolean ret = UploadHeadIconManger.updateImgURL(fileName, shopName);//¸üÐÂÊý¾Ý¿â
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½,ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½æ´¢ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+				boolean ret = UploadHeadIconManger.updateImgURL(fileName, shopName);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 				if (ret == false) {
 					request.setAttribute("uploadRes", "N");
 				}
@@ -83,10 +83,10 @@ public class UploadIconServlet extends HttpServlet {
 			
 			LoginShopManger loginShopManger = new LoginShopManger();
 			Shop shop = loginShopManger.getShopInfo(shopName);
-			request.setAttribute("email", shop.getEmail());//´«µÝ¸øpersonal_shopÒ³Ãæ½øÐÐÏÔÊ¾
-			request.setAttribute("imageURL", shop.getImgUrl());//´«µÝ¸øpersonal_shopÒ³Ãæ½øÐÐÏÔÊ¾
-			request.setAttribute("telephone", shop.getTelephone());//´«µÝ¸øpersonal_shopÒ³Ãæ½øÐÐÏÔÊ¾
-			request.setAttribute("shopDec", shop.getShopDec());//´«µÝ¸øpersonal_shopÒ³Ãæ½øÐÐÏÔÊ¾
+			request.setAttribute("email", shop.getEmail());//ï¿½ï¿½ï¿½Ý¸ï¿½personal_shopÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+			request.setAttribute("imageURL", shop.getImgUrl());//ï¿½ï¿½ï¿½Ý¸ï¿½personal_shopÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+			request.setAttribute("telephone", shop.getTelephone());//ï¿½ï¿½ï¿½Ý¸ï¿½personal_shopÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
+			request.setAttribute("shopDec", shop.getShopDec());//ï¿½ï¿½ï¿½Ý¸ï¿½personal_shopÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 			request.getRequestDispatcher("personal_shop.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -9,101 +9,102 @@ import java.sql.Statement;
 import java.util.Properties;
 
 /**
- * 数据库连接
+ * 锟斤拷锟捷匡拷锟斤拷锟斤拷
  * @author gmx
  */
-public class DBUtils {  
-	
-	private Connection conn=null;//声明Connection对象的实例
-	private Statement stmt=null;//声明Statement对象的实例
-	public ResultSet rs=null;//声明ResultSet对象的实例
-	private static String propFileName="/com/bit/bonusPointsExchange/DBUtils.properties";//指定资源文件保存的位置
-	private static Properties prop = new Properties(); // 创建并实例化Properties对象的实例
+public class DBUtils {
 
-	/*定义保存数据库驱动的变量*/
+	private Connection conn=null;//锟斤拷锟斤拷Connection锟斤拷锟斤拷锟斤拷实锟斤拷
+	private Statement stmt=null;//锟斤拷锟斤拷Statement锟斤拷锟斤拷锟斤拷实锟斤拷
+	public ResultSet rs=null;//锟斤拷锟斤拷ResultSet锟斤拷锟斤拷锟斤拷实锟斤拷
+	private static String propFileName="/com/bit/bonusPointsExchange/DBUtils.properties";//指锟斤拷锟斤拷源锟侥硷拷锟斤拷锟斤拷锟斤拷位锟斤拷
+	private static Properties prop = new Properties(); // 锟斤拷锟斤拷锟斤拷实锟斤拷锟斤拷Properties锟斤拷锟斤拷锟斤拷实锟斤拷
+
+	/*锟斤拷锟藉保锟斤拷锟斤拷锟捷匡拷锟斤拷锟斤拷锟侥憋拷锟斤拷*/
 	private static String dbClassName = null;
 	private static String dbUrl = null;
 	private static String dbUser = null;
 	private static String dbPwd = null;
 
-	/*静态代码块，类初始化时加载数据库驱动 */ 
+	/*锟斤拷态锟斤拷锟斤拷锟介，锟斤拷锟斤拷始锟斤拷时锟斤拷锟斤拷锟斤拷锟捷匡拷锟斤拷锟斤拷 */
 	static{
-		try {			//捕捉异常
-			//将Properties文件读取到InputStream对象中
+		try {			//锟斤拷捉锟届常
+			//锟斤拷Properties锟侥硷拷锟斤拷取锟斤拷InputStream锟斤拷锟斤拷锟斤拷
 			InputStream in =DBUtils.class.getClassLoader().getResourceAsStream(propFileName);
-			prop.load(in); // 通过输入流对象加载Properties文件
-			dbClassName = prop.getProperty("DB_CLASS_NAME"); // 获取数据库驱动
-			dbUrl = prop.getProperty("DB_URL", dbUrl);		//获取URL
-			dbUser = prop.getProperty("DB_USER", dbUser);	//获取登录用户
-			dbPwd = prop.getProperty("DB_PWD", dbPwd);		//获取密码
+			prop.load(in); // 通锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷Properties锟侥硷拷
+			dbClassName = prop.getProperty("DB_CLASS_NAME"); // 锟斤拷取锟斤拷锟捷匡拷锟斤拷锟斤拷
+			dbUrl = prop.getProperty("DB_URL", dbUrl);		//锟斤拷取URL
+			dbUser = prop.getProperty("DB_USER", dbUser);	//锟斤拷取锟斤拷录锟矫伙拷
+			dbPwd = prop.getProperty("DB_PWD", dbPwd);		//锟斤拷取锟斤拷锟斤拷
 		} catch (Exception e) {
-			e.printStackTrace(); // 输出异常信息
+			e.printStackTrace(); // 锟斤拷锟斤拷锟届常锟斤拷息
 		}
 	}
 
-	
-	/**连接数据库**/
+
+	/**锟斤拷锟斤拷锟斤拷锟捷匡拷**/
 	public static Connection getConnection(){
 		Connection conn=null;
-		try {			 //连接数据库时可能发生异常因此需要捕捉该异常
-			Class.forName(dbClassName).newInstance();//装载数据库驱动
-			conn=DriverManager.getConnection(dbUrl,dbUser,dbPwd);//建立与数据库URL中定义的数据库的连接		
+		try {			 //锟斤拷锟斤拷锟斤拷锟捷匡拷时锟斤拷锟杰凤拷锟斤拷锟届常锟斤拷锟斤拷锟斤拷要锟斤拷捉锟斤拷锟届常
+			Class.forName(dbClassName).newInstance();//装锟斤拷锟斤拷锟捷匡拷锟斤拷锟斤拷
+//			conn=DriverManager.getConnection(dbUrl,dbUser,dbPwd);//锟斤拷锟斤拷锟斤拷锟斤拷锟捷匡拷URL锟叫讹拷锟斤拷锟斤拷锟斤拷锟捷匡拷锟斤拷锟斤拷锟斤拷
+conn=DriverManager.getConnection("jdbc:mysql://db4free.net:3306/bonusbit123","bonusbit123","12345678");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();//输出异常信息
-		}	
-		if(conn==null){
-			System.out.println("警告：DbConnectionManager.getConnection()获得数据库链接失败,\r\n\r\n链接类型："
-					+dbClassName
-					+"\r\n链接诶位置："
-					+dbUrl
-					+"\r\n用户/密码"
-					+dbUser+"/"+dbPwd);//在控制台上输出提示信息
+			e.printStackTrace();//锟斤拷锟斤拷锟届常锟斤拷息
 		}
-		return conn;//返回数据库连接对象
+		if(conn==null){
+			System.out.println("锟斤拷锟芥：DbConnectionManager.getConnection()锟斤拷锟斤拷锟斤拷锟捷匡拷锟斤拷锟斤拷失锟斤拷,\r\n\r\n锟斤拷锟斤拷锟斤拷锟酵ｏ拷"
+					+dbClassName
+					+"\r\n锟斤拷锟斤拷锟斤拷位锟矫ｏ拷"
+					+dbUrl
+					+"\r\n锟矫伙拷/锟斤拷锟斤拷"
+					+dbUser+"/"+dbPwd);//锟节匡拷锟斤拷台锟斤拷锟斤拷锟斤拷锟斤拷示锟斤拷息
+		}
+		return conn;//锟斤拷锟斤拷锟斤拷锟捷匡拷锟斤拷锟接讹拷锟斤拷
 	}
-	
-	/**	功能：执行查询语句**/
+
+	/**	锟斤拷锟杰ｏ拷执锟叫诧拷询锟斤拷锟斤拷**/
 	public ResultSet executeQuery(String sql){
-		try { // 捕捉异常
-			conn = getConnection(); // 调用getConnection()方法构造Connection对象的一个实例conn
+		try { // 锟斤拷捉锟届常
+			conn = getConnection(); // 锟斤拷锟斤拷getConnection()锟斤拷锟斤拷锟斤拷锟斤拷Connection锟斤拷锟斤拷锟斤拷一锟斤拷实锟斤拷conn
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 					ResultSet.CONCUR_READ_ONLY);
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException ex) {
-			System.err.println(ex.getMessage()); // 输出异常信息
+			System.err.println(ex.getMessage()); // 锟斤拷锟斤拷锟届常锟斤拷息
 		}
-		return rs; // 返回结果集对象
+		return rs; // 锟斤拷锟截斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 	}
-	
-	/**功能：执行更新 操作**/
+
+	/**锟斤拷锟杰ｏ拷执锟叫革拷锟斤拷 锟斤拷锟斤拷**/
 	public int executeUpdate(String sql) {
-		int result = 0; // 定义保存返回值的变量
-		try { // 捕捉异常
-			conn = getConnection(); // 调用getConnection()方法构造Connection对象的一个实例conn
+		int result = 0; // 锟斤拷锟藉保锟芥返锟斤拷值锟侥憋拷锟斤拷
+		try { // 锟斤拷捉锟届常
+			conn = getConnection(); // 锟斤拷锟斤拷getConnection()锟斤拷锟斤拷锟斤拷锟斤拷Connection锟斤拷锟斤拷锟斤拷一锟斤拷实锟斤拷conn
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			result = stmt.executeUpdate(sql); // 执行更新操作
+			result = stmt.executeUpdate(sql); // 执锟叫革拷锟铰诧拷锟斤拷
 		} catch (SQLException ex) {
-			result = 0; // 将保存返回值的变量赋值为0
+			result = 0; // 锟斤拷锟斤拷锟芥返锟斤拷值锟侥憋拷锟斤拷锟斤拷值为0
 		}
-		return result; // 返回保存返回值的变量
+		return result; // 锟斤拷锟截憋拷锟芥返锟斤拷值锟侥憋拷锟斤拷
 	}
-	
-	/**功能:关闭数据库的连接，释放资源**/
+
+	/**锟斤拷锟斤拷:锟截憋拷锟斤拷锟捷匡拷锟斤拷锟斤拷锟接ｏ拷锟酵凤拷锟斤拷源**/
 	public static void close(ResultSet rs,Statement stmt,Connection conn){
-		try {//捕捉异常
-			if(rs!=null){ // 当ResultSet对象的实例rs不为空时
-				rs.close();// 关闭ResultSet对象
+		try {//锟斤拷捉锟届常
+			if(rs!=null){ // 锟斤拷ResultSet锟斤拷锟斤拷锟斤拷实锟斤拷rs锟斤拷为锟斤拷时
+				rs.close();// 锟截憋拷ResultSet锟斤拷锟斤拷
 			}
-			if(stmt!=null){ // 当Statement对象的实例stmt不为空时
-				stmt.close(); // 关闭Statement对象
+			if(stmt!=null){ // 锟斤拷Statement锟斤拷锟斤拷锟斤拷实锟斤拷stmt锟斤拷为锟斤拷时
+				stmt.close(); // 锟截憋拷Statement锟斤拷锟斤拷
 			}
-			if (conn != null) { // 当Connection对象的实例conn不为空时
-				conn.close(); // 关闭Connection对象
+			if (conn != null) { // 锟斤拷Connection锟斤拷锟斤拷锟斤拷实锟斤拷conn锟斤拷为锟斤拷时
+				conn.close(); // 锟截憋拷Connection锟斤拷锟斤拷
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace(System.err); // 输出异常信息
+			e.printStackTrace(System.err); // 锟斤拷锟斤拷锟届常锟斤拷息
 		}
 	}
 }
