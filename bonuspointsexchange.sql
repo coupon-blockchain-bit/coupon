@@ -11,6 +11,7 @@
 # Source for table order
 #
 
+USE bonusbitExchange;
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `orderID` int(11) NOT NULL AUTO_INCREMENT,
@@ -20,8 +21,8 @@ CREATE TABLE `order` (
   `wantedShop` varchar(50) NOT NULL DEFAULT '',
   `wantedPoint` int(11) NOT NULL DEFAULT '0',
   `exchangeUserName` varchar(50) DEFAULT NULL,
-  `untilDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `orderDate` datetime DEFAULT '0000-00-00 00:00:00',
+  `untilDate` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
+  `orderDate` datetime DEFAULT '1000-01-01 00:00:00',
   `orderStatus` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`orderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -45,7 +46,7 @@ CREATE TABLE `point` (
   `userName` varchar(50) NOT NULL DEFAULT '',
   `shopName` varchar(50) NOT NULL DEFAULT '',
   `platformPoint` int(11) NOT NULL DEFAULT '0',
-  `bindtime` date DEFAULT '0000-00-00',
+  `bindtime` date DEFAULT '1000-01-01',
   PRIMARY KEY (`pointID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -55,7 +56,24 @@ CREATE TABLE `point` (
 
 LOCK TABLES `point` WRITE;
 /*!40000 ALTER TABLE `point` DISABLE KEYS */;
+INSERT INTO `point` VALUES (3,'Bob','Air China',100000,'2017-02-27');
 INSERT INTO `point` VALUES (2,'Bob','Changan Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (4,'Bob','Eastern Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (5,'Bob','Northern Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (6,'Bob','Shanghai Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (7,'Bob','Shenzhen Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (8,'Bob','Sichuan Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (9,'Bob','Wuhan Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (10,'Bob','Xiamen Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (11,'John','Air China',100000,'2017-02-27');
+INSERT INTO `point` VALUES (12,'John','Changan Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (13,'John','Eastern Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (14,'John','Northern Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (15,'John','Shanghai Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (16,'John','Shenzhen Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (17,'John','Sichuan Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (18,'John','Wuhan Airlines',100000,'2017-02-27');
+INSERT INTO `point` VALUES (19,'John','Xiamen Airlines',100000,'2017-02-27');
 /*!40000 ALTER TABLE `point` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +122,7 @@ CREATE TABLE `transfer` (
   `pointID` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   `point` int(11) NOT NULL DEFAULT '0',
-  `transferTime` date NOT NULL DEFAULT '0000-00-00',
+  `transferTime` date NOT NULL DEFAULT '1000-01-01',
   `shopName` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`transferID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
