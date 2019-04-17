@@ -84,7 +84,7 @@ installChaincode 0 1
 echo "Install chaincode on peer0.org2..."
 installChaincode 0 2
 echo "Install chaincode on peer1.org2..."
-installChaincode 1 2
+installChaincode 1 1
 echo "Install chaincode on peer1.org2..."
 installChaincode 1 2
 
@@ -103,6 +103,9 @@ chaincodeQuery 0 1 100
 echo "Sending invoke transaction on peer0.org1 peer0.org2..."
 chaincodeInvoke 0 1 0 2
 
+# Query chaincode on peer0.org1
+echo "Querying chaincode on peer0.org1..."
+chaincodeQuery 0 1 100
 
 
 
