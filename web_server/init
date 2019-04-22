@@ -1,0 +1,12 @@
+java -cp blockchain-client.jar org.app.network.CreateChannel
+
+
+java -cp blockchain-client.jar org.app.network.DeployInstantiateChaincode
+
+
+java -cp blockchain-client.jar org.app.user.RegisterEnrollUser
+
+java -cp blockchain-client.jar org.app.chaincode.invocation.InvokeChaincode
+
+
+java -cp blockchain-client.jar org.app.chaincode.invocation.QueryChaincode
