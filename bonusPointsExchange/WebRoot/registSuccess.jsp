@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-       	 <%=request.getAttribute("userName") %>注册成功，请到<%=request.getAttribute("email") %>邮箱中激活账户. <br>
+       	 <%=request.getAttribute("userName") %>注册成功，请到<%=request.getAttribute("email") %>Activate the account in the mailbox.<br>
        
   </body>
 </html>

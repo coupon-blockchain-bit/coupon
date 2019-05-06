@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>智能推荐</title>
+<title>Intelligent Recommendation</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/footer.css" >
 <link rel="stylesheet" type="text/css" href="css/order.css">
@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="header.jsp" %>
 <!--这是main_page-->
 <div class="exchangeOrder">
-    <p class="title">系统推荐订单<span class="title1">&nbsp;&nbsp;&nbsp;RECOMMEND ORDER</span><span class="title1 right"><a href="order.jsp">返回订单中心</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+    <p class="title">System recommended order<span class="title1">&nbsp;&nbsp;&nbsp;RECOMMEND ORDER</span><span class="title1 right"><a href="order.jsp">Return to the order center</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
   <div id="order-list" class="clearfix"> 
     <!---- 事例1------>
     <div class="order-info clearfix">
@@ -90,13 +90,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- table 中是用户最终交易需要的积分-->
           <table>
             <tr>
-              <td>商家：<%=recShop.getShopName() %></td>
+              <td>Merchant:<%=recShop.getShopName() %></td>
             </tr>
             <tr>
-              <td>积分数量：<%=recPoints.get(i) %></td>
+              <td>Number of Bonus:<%=recPoints.get(i) %></td>
             </tr>
             <tr>
-             <td>订单交易方：<%=recOrderIds.size()+1 %>方</td>
+             <td>Order party:<%=recOrderIds.size()+1 %>方</td>
             </tr> 
           </table>
         </li>  
@@ -107,10 +107,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- table 中是用户最终交易获得的积分-->
           <table>
             <tr>
-              <td>目标商家：<%=recWantShop.getShopName() %></td>
+              <td>Target merchant:<%=recWantShop.getShopName() %></td>
             </tr>
             <tr>
-              <td>目标积分数量：<%=recWantedPoints.get(i) %></td>
+              <td>Number of target bonus<%=recWantedPoints.get(i) %></td>
             </tr>
             <tr>
               <td></td>
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </table>
         </li>          
          <li class="operate">
-          <input name="exchange" type="submit" class="submitBtn"  id="exchange" value="交易">
+          <input name="exchange" type="submit" class="submitBtn"  id="exchange" value="Deal">
         </li>
     
         <input type="hidden" name="recOrderIds" value="<%=recOrderIds%>"/>
@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      </form>
     <%} %>
   <%} else {%>
-       <br/><br/><br/><p align="center">  搜索结果为0！</p>
+       <br/><br/><br/><p align="center">  Search results are 0!</p>
  <%} %>
     </div>
   </div>
@@ -142,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function checkShop() {
 	var shop = document.getElementById("session").value;
 	if (shop != "null") {
-		alert("商家类型账号不能交易，请更换用户类型账号登录！");
+		alert("Merchant type account can not be traded, please change the user type account and login!");
 		return false;
 	}
 }

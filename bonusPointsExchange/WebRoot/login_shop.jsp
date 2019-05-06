@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(shopChangePwdResult == "Y") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("修改密码成功！请重新登录！");   
+		alert("Password is changed.Login again please!");   
 	</script>	
 <% } %>
 
@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(registRes == "Y") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("注册成功！请登录！");                            
+		alert("Registration succeeded.Log in please!");                            
 	</script>	
 <% } %>
 <%
@@ -26,14 +26,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(resetPasswdMeg == "success") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("重置密码成功，请重新登录");                            
+		alert("Resetting password succeeded.Log in again please!");                            
 	</script>	
 <% } %>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>登录</title>
+<title>Login</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/login.css">
@@ -44,28 +44,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--这是main_page-->
   <div class="login-frame">
     <div>
-      <p class="title">&nbsp;&nbsp;商家登录&nbsp;&nbsp;<span class="title1">SHOP LOGIN</span><span class="title1 right"><a href="login.jsp">前往用户登录</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+      <p class="title">&nbsp;&nbsp;Merchant login&nbsp;&nbsp;<span class="title1">SHOP LOGIN</span><span class="title1 right"><a href="login.jsp">Login as a user</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
     </div>
     <div class="span3">
-      <div class="ad"> <img src="images/ad3.jpg" alt="广告"/> </div>
+      <div class="ad"> <img src="images/ad3.jpg" alt="Advertisement"/> </div>
     </div>
     <div class="span4">
       <form class="login-form" action="/bonusPointsExchange/ShopLoginServlet" method="post" onsubmit="return checkForm();">
         <table cellspacing="2">
           <tr>
-            <td style="text-indent:1em;">账号：</td>
+            <td style="text-indent:1em;">Account:</td>
             <td><input name="userName" type="text" id="userName" maxlength="20"></td>
           </tr>
           <tr>
-            <td style="text-indent:1em;">密码：</td>
+            <td style="text-indent:1em;">Password:</td>
             <td><input name="password" type="password" id="password" maxlength="20"></td>
           </tr>
           <tr>
-            <td class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="提交"></td>
-            <td class="mid"><input name="reset" type="reset" class="submitBtn" id="reset" value="重置"></td>
+            <td class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="Submit"></td>
+            <td class="mid"><input name="reset" type="reset" class="submitBtn" id="reset" value="Reset"></td>
           </tr>
         </table>
-        <div class="mes"><a href="regist_shop.jsp">免费注册&nbsp;&nbsp; </a><a href="/bonusPointsExchange/retrievePassword_1.jsp?method=forgetPasswd_shop">忘记密码</a></div>
+        <div class="mes"><a href="regist_shop.jsp">Free registration&nbsp;&nbsp; </a><a href="/bonusPointsExchange/retrievePassword_1.jsp?method=forgetPasswd_shop">Forgot Password?</a></div>
       </form>
     </div>
   </div>
@@ -80,13 +80,13 @@ function checkForm() {
 	// alert("ada");
 	var userName = document.getElementById("userName").value;
 	if (userName == "") {
-		alert("用户名不能为空！");
+		alert("Sorry,Username cannot be empty!");
 		return false;
 	}
 	
 	var password = document.getElementById("password").value;
 	if (password == "") {
-		alert("密码不能为空！");
+		alert("Sorry,Password cannot be empty.");
 		return false;
 	}
 }

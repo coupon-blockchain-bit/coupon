@@ -27,8 +27,8 @@ CREATE TABLE `order` (
   `wantedShop` varchar(50) NOT NULL DEFAULT '',
   `wantedPoint` int(11) NOT NULL DEFAULT '0',
   `exchangeUserName` varchar(50) DEFAULT NULL,
-  `untilDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `orderDate` datetime DEFAULT '0000-00-00 00:00:00',
+  `untilDate` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
+  `orderDate` datetime DEFAULT '1000-01-01 00:00:00',
   `orderStatus` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`orderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -52,7 +52,7 @@ CREATE TABLE `point` (
   `userName` varchar(50) NOT NULL DEFAULT '',
   `shopName` varchar(50) NOT NULL DEFAULT '',
   `platformPoint` int(11) NOT NULL DEFAULT '0',
-  `bindtime` date DEFAULT '0000-00-00',
+  `bindtime` date DEFAULT '1000-01-01',
   PRIMARY KEY (`pointID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -111,7 +111,7 @@ CREATE TABLE `transfer` (
   `pointID` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   `point` int(11) NOT NULL DEFAULT '0',
-  `transferTime` date NOT NULL DEFAULT '0000-00-00',
+  `transferTime` date NOT NULL DEFAULT '1000-01-01',
   `shopName` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`transferID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

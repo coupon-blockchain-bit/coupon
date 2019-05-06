@@ -11,37 +11,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bit.bonusPointsExchange.bean.Shop;
 import com.bit.bonusPointsExchange.manager.RegistShopManger;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-//¼ì²éÉÌ¼ÒÃû³ÆÊÇ·ñ¿ÉÓÃ
+
+//ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 public class CheckShopName extends HttpServlet {
 
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		this.doPost(request, response);
 	}
 
-
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CheckShopName");
-		//ÉèÖÃÊä³öÐÅÏ¢µÄ±àÂë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä±ï¿½ï¿½ï¿½
 		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("utf-8"); 
+		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		//ÉèÖÃ»ñÈ¡µÄÐÅÏ¢µÄ±àÂë
-		String shopName=request.getParameter("shopName");
+		// ï¿½ï¿½ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä±ï¿½ï¿½ï¿½
+		String shopName = request.getParameter("shopName");
 		shopName = URLDecoder.decode(shopName, "UTF-8");
-		Shop shop=new Shop();
-		shop.setShopName(shopName);	
-		//µ÷ÓÃ²éÑ¯º¯Êý£¬²éÑ¯ÔÚÊý¾Ý¿âÖÐ¸ÃÉÌ¼ÒÃû³ÆÊÇ·ñÒÑ¾­´æÔÚ
+		Shop shop = new Shop();
+		shop.setShopName(shopName);
+		// ï¿½ï¿½ï¿½Ã²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ð¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 		RegistShopManger registShopManger = new RegistShopManger();
 		boolean res = registShopManger.isShopNameExit(shop);
-		if(!res){  //sahngjiaÃûÒÑ´æÔÚ
+		if (!res) { // sahngjiaï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 			out.print("N");
-		}
-		else{  //ÉÌ¼ÒÃû²»´æÔÚ
+		} else { // ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			out.print("Y");
 		}
 		out.flush();

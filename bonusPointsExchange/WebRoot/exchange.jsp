@@ -13,11 +13,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(exchangeRes == "false") {
 %>
   <script type="text/javascript" language="javascript">
-    alert("积分兑换失败！");                            
+    alert("Exchange of bonus failed.");                            
   </script> 
 <% } else if(exchangeRes == "true") {%>
   <script type="text/javascript" language="javascript">
-    alert("积分兑换 成功！");                                      
+    alert("The exchange of bonus succeed!");                                      
   </script> 
 <% }else if(exchangeRes == "连接blockchain失败，请检查网络") {%>
   <script type="text/javascript" language="javascript">
@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(isBindShopName == "false") {
 %>
   <script type="text/javascript" language="javascript">
-    alert("您未绑定商家！");                            
+    alert("No merchant was bound.");                            
   </script> 
 <% }%>
 <%
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(isBindWantedShop == "false") {
 %>
   <script type="text/javascript" language="javascript">
-    alert("您未绑定目标商家！");                            
+    alert("You're not bound to the target merchant.");                            
   </script> 
 <% }%>
 <%
@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(isPointEnough == "no") {
 %>
   <script type="text/javascript" language="javascript">
-    alert("您在商家的积分不够！");                            
+    alert("Your bonus in the merchant isn't enough!");                            
   </script> 
 <% }%>
 
@@ -55,7 +55,7 @@ String userName = (String)request.getSession().getAttribute("userName");
 String shopName = (String)request.getSession().getAttribute("shopName");	
 if(userName == null && shopName == null) { %>
 	<script type="text/javascript" language="javascript">
-		alert("您还没有登录！请登录！");    // 弹出错误信息
+		alert("You have not log on.Please log on first.");    // 弹出错误信息
 		window.location.href="/bonusPointsExchange/login.jsp" ;                             
 	</script>	
 <% } %>
@@ -63,7 +63,7 @@ if(userName == null && shopName == null) { %>
 <html>
 <head>
 <meta charset="utf-8">
-<title>最新交易</title>
+<title>Latest deal</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/footer.css" >
 <link rel="stylesheet" type="text/css" href="css/order.css">
@@ -74,7 +74,7 @@ if(userName == null && shopName == null) { %>
 	<%@ include file="header.jsp" %>
 <!--这是main_page-->
 <div class="exchangeOrder">
-    <p class="title">最新发布<span class="title1">&nbsp;&nbsp;&nbsp;REALEASE RECENTLY</span></p>
+    <p class="title">Recently released<span class="title1">&nbsp;&nbsp;&nbsp;REALEASE RECENTLY</span></p>
   <div id="order-list" class="clearfix"> 
     <!---- 事例1------>
     <div class="order-info clearfix">
@@ -89,13 +89,13 @@ if(userName == null && shopName == null) { %>
         <li class="exchangeOrder-info">
           <table>
             <tr>
-              <td>商家：<%=orderInfo.getShopName()%></td>
+              <td>Merchant&nbsp;:<%=orderInfo.getShopName()%></td>
             </tr>
             <tr>
-              <td>积分数量：<%=orderInfo.getPoint()%></td>
+              <td>amount of bonus:<%=orderInfo.getPoint()%></td>
             </tr>
             <tr>
-             <td>订单发布方：<%=orderInfo.getUserName() %></td>
+             <td>publisher of order:<%=orderInfo.getUserName() %></td>
             </tr> 
           </table>
         </li>  
@@ -105,23 +105,23 @@ if(userName == null && shopName == null) { %>
         <li class="exchangeOrder-info">
           <table>
             <tr>
-              <td>目标商家：<%=orderInfo.getWantedShop()%></td>
+              <td>merchant in target:<%=orderInfo.getWantedShop()%></td>
             </tr>
             <tr>
-              <td>目标积分数量：<%=orderInfo.getWantedPoint()%></td>
+              <td>amount of bonus in target:<%=orderInfo.getWantedPoint()%></td>
             </tr>
             <tr>
-              <td>截止日期：<%=orderInfo.getUntilDate()%></td>
+              <td>Deadline:<%=orderInfo.getUntilDate()%></td>
             </tr> 
           </table>
         </li>        
         <%if(orderInfo.getUserName().equals(isUserLogin)) { %>
         <li class="operate">
-          <input name="exchange" type="button" style="background:#EDEDED;" disabled="disabled" class="submitBtn"  id="exchange" value="交易">
+          <input name="exchange" type="button" style="background:#EDEDED;" disabled="disabled" class="submitBtn"  id="exchange" value="Deal">
         </li>
         <%} else {%>
          <li class="operate">
-          <input name="exchange" type="submit" class="submitBtn"  id="exchange" value="交易">
+          <input name="exchange" type="submit" class="submitBtn"  id="exchange" value="Deal">
         </li>
         <%} %>
         <input type="hidden" name="orderID" value="<%=orderInfo.getOrderID()%>"/>
@@ -131,7 +131,7 @@ if(userName == null && shopName == null) { %>
      </form>
     <%} %>
   <%} else {%>
-       <br/><br/><br/><p align="center">  搜索结果为0！</p>
+       <br/><br/><br/><p align="center"> Search result is 0! </p>
  <%} %>
     </div>
   </div>
@@ -145,7 +145,7 @@ if(userName == null && shopName == null) { %>
 function checkShop() {
 	var shop = document.getElementById("session").value;
 	if (shop != "null") {
-		alert("商家类型账号不能交易，请更换用户类型账号登录！");
+		alert("Merchant type account cannot carry out a transaction.Please replace the user type account.");
 		return false;
 	}
 }

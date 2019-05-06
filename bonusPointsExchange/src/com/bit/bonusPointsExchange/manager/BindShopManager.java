@@ -5,57 +5,52 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import com.bit.bonusPointsExchange.bean.Point;
-import com.bit.bonusPointsExchange.bean.Shop;
 import com.bit.bonusPointsExchange.bean.ShowBindInfo;
-import com.bit.bonusPointsExchange.bean.User;
 import com.bit.bonusPointsExchange.utils.DBUtils;
-import com.sun.org.apache.xpath.internal.operations.And;
-
 
 public class BindShopManager {
-	
+
 	private Connection conn = null;
 	private Statement stmt = null;
-	private String sql = null; 
+	private String sql = null;
 	private ResultSet rs = null;
-	
-	public int isValid(String userName, String password,String shopName){
-		//¸ÃÓÃ»§ÔÚ¸ÃÉÌ¼ÒÊÇ·ñÒÑ¾­×¢²á
-		conn=DBUtils.getConnection();
-		int result = 0;					
-		//System.out.println(shop.getShopName());
-		//System.out.println(shop.getPassword());
+
+	public int isValid(String userName, String password, String shopName) {
+		// ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ú¸ï¿½ï¿½Ì¼ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½×¢ï¿½ï¿½
+		conn = DBUtils.getConnection();
+		int result = 0;
+		// System.out.println(shop.getShopName());
+		// System.out.println(shop.getPassword());
 		try {
-			String sql ="select *from userpoint where userName='"+userName+"' and password='"+password+"' and shopName='"+shopName+"'";
+			String sql = "select *from userpoint where userName='" + userName + "' and password='" + password
+					+ "' and shopName='" + shopName + "'";
 			stmt = conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			//System.out.println(sql);
-			if(rs.next())
-				result = 1;  	
+			rs = stmt.executeQuery(sql);
+			// System.out.println(sql);
+			if (rs.next())
+				result = 1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
-		//System.out.println(result);
+		// System.out.println(result);
 		return result;
 	}
-	
-	//²éÑ¯ÓÃ»§ÊÇ·ñÒÑ¾­°ó¶¨¸ÃÉÌ¼Ò
-	public boolean isBindThisShop(String userName, String shopName){
-		conn=DBUtils.getConnection();
+
+	// ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ó¶¨¸ï¿½ï¿½Ì¼ï¿½
+	public boolean isBindThisShop(String userName, String shopName) {
+		conn = DBUtils.getConnection();
 		boolean res = false;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select *from point where userName='"+userName+"'and shopName='"+shopName+"'");
-			if(rs.next()) {
+			rs = stmt.executeQuery(
+					"select *from point where userName='" + userName + "'and shopName='" + shopName + "'");
+			if (rs.next()) {
 				res = true;
 				rs.close();
 				return res;
@@ -63,38 +58,40 @@ public class BindShopManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
 		return res;
 	}
-		
-	//²åÈëÆ½Ì¨±ípoint£¬¼ÇÂ¼ÓÃ»§°ó¶¨µÄÏà¹ØÐÅÏ¢
-	public int insertBindInfoToPoint(String userName,String shopName,String bindTime){
-		int count =0;//bangdingÊÇ·ñ³É¹¦±êÖ¾£¬ 0ÎªÊ§°Ü
-		conn=DBUtils.getConnection();
+
+	// ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ï¿½pointï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ã»ï¿½ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+	public int insertBindInfoToPoint(String userName, String shopName, String bindTime) {
+		int count = 0;// bangdingï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ 0ÎªÊ§ï¿½ï¿½
+		conn = DBUtils.getConnection();
 		try {
-			stmt=conn.createStatement();
-			String sql="insert into point(userName,shopName,bindtime) values ('"+userName+"','"+shopName+"','"+bindTime+"')";
-			count=stmt.executeUpdate(sql);//Ö´ÐÐ²åÈëÓï¾ä£¬²¢·µ»Ø²åÈëÊý¾ÝµÄ¸öÊý	
+			stmt = conn.createStatement();
+			String sql = "insert into point(userName,shopName,bindtime) values ('" + userName + "','" + shopName + "','"
+					+ bindTime + "')";
+			count = stmt.executeUpdate(sql);// Ö´ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÄ¸ï¿½ï¿½ï¿½
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
-		return count;			
+		return count;
 	}
-	
-	
-	//£¨²éÑ¯ÓÃ»§°ó¶¨µÄÉÌ¼ÒÐÅÏ¢,£©´«ÈëµÄÊÇÓÃ»§ÔÚÎÒÃÇÆ½Ì¨×¢²áµÄÃû³Æ
-	public List<ShowBindInfo> bingShopInfo(String userName){
-		conn=DBUtils.getConnection();
+
+	// ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½ó¶¨µï¿½ï¿½Ì¼ï¿½ï¿½ï¿½Ï¢,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public List<ShowBindInfo> bingShopInfo(String userName) {
+		conn = DBUtils.getConnection();
 		List<ShowBindInfo> list = new ArrayList<ShowBindInfo>();
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select shop.imageURL, point.shopName, point.platformPoint from shop, point where point.userName ='"+userName+"' and point.shopName = shop.shopName");
-			while(rs.next()) {
+			rs = stmt.executeQuery(
+					"select shop.imageURL, point.shopName, point.platformPoint from shop, point where point.userName ='"
+							+ userName + "' and point.shopName = shop.shopName");
+			while (rs.next()) {
 				ShowBindInfo bindInfo = new ShowBindInfo();
 				bindInfo.setImgURL(rs.getString("imageURL"));
 				bindInfo.setPlatformPoints(rs.getString("platformPoint"));
@@ -106,20 +103,20 @@ public class BindShopManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
-			}
+		}
 		return list;
 	}
-	
-	public Point findBindedShop(String userName,String shopName){//
+
+	public Point findBindedShop(String userName, String shopName) {//
 		Point point = new Point();
-		conn=DBUtils.getConnection();
+		conn = DBUtils.getConnection();
 		try {
 			stmt = conn.createStatement();
-			sql = "select * from point where userName='"+userName+"' and shopName='"+shopName+"'";
+			sql = "select * from point where userName='" + userName + "' and shopName='" + shopName + "'";
 			rs = stmt.executeQuery(sql);
-			if(rs.next()){
+			if (rs.next()) {
 				point.setPointID(rs.getInt("pointID"));
 				point.setUserName(rs.getString("userName"));
 				point.setShopName(rs.getString("shopName"));
@@ -130,24 +127,23 @@ public class BindShopManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return point;
 	}
 
-	public int deleteBindShop(int pointID){
-		int count=0;
-		conn=DBUtils.getConnection();
+	public int deleteBindShop(int pointID) {
+		int count = 0;
+		conn = DBUtils.getConnection();
 		try {
 			stmt = conn.createStatement();
-			sql = "delete from point where pointID="+pointID;
+			sql = "delete from point where pointID=" + pointID;
 			count = stmt.executeUpdate(sql);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return count;
 	}
-	
+
 }

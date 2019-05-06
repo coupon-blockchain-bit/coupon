@@ -11,11 +11,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(bindRes == "Y") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("成功绑定商家！");                                    // 弹出错误信息
+		alert("Bind the business successfully!");                                    // 弹出错误信息
 	</script>		
 <% } else if(bindRes == "N") {%>
 	<script type="text/javascript" language="javascript">
-		alert("绑定商家失败，您可能未在该商家注册或您已绑定过该商家！");                                    // 弹出错误信息
+		alert("The binding merchant failed, you may not have registered with the merchant or you have already bound the merchant!");                                    // 弹出错误信息
 	</script>
 <% }else if(bindRes == "连接blockchain失败，请检查网络") {%>
 	<script type="text/javascript" language="javascript">
@@ -29,11 +29,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(userChangeResult == "Y") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("修改信息成功！");                                    // 弹出错误信息
+		alert("The information was modified successfully!");                                    // 弹出错误信息
 	</script>	
 <% } else if(userChangeResult == "N") {%>
 	<script type="text/javascript" language="javascript">
-		alert("修改信息失败！");                                    
+		alert("Information modification failed!");                                    
 	</script>	
 <% }%>
 
@@ -42,11 +42,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(pointTranRes == "Y") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("成功将积分从商家转移到平台！您在平台拥有"+<%=request.getAttribute("userPoints")%>+"积分，在商家拥有"+<%=request.getAttribute("shopPoints")%>+"积分" );                                    // 弹出错误信息
+		alert("Points are transferred from the merchant to the platform successfully!You own"+<%=request.getAttribute("userPoints")%>+"bonus in platform,and you own"+<%=request.getAttribute("shopPoints")%>+"bonus in Merchant." );                                    // 弹出错误信息
 	</script>	
 <% } else if(pointTranRes == "N") {%>
 	<script type="text/javascript" language="javascript">
-		alert("转移失败！");                                    
+		alert("Transfer failed!");                                    
 	</script>	
 <% }else if(pointTranRes == "连接blockchain失败，请检查网络") {%>
 	<script type="text/javascript" language="javascript">
@@ -60,11 +60,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(pointToPshopRes == "Y") {
 %>
 	<script type="text/javascript" language="javascript">
-		alert("成功将积分从平台转移到商家！您在平台拥有"+<%=request.getAttribute("userPoints")%>+"积分，在商家拥有"+<%=request.getAttribute("shopPoints")%>+"积分" );                                    // 弹出错误信息
+		alert("Points are transferred from the platform to the merchant successfully!You own"+<%=request.getAttribute("userPoints")%>+"bonus in platform,And you own"+<%=request.getAttribute("shopPoints")%>+"Bonus in Merchant." );                                    // 弹出错误信息
 	</script>	
 <% } else if(pointToPshopRes == "N") {%>
 	<script type="text/javascript" language="javascript">
-		alert("转移失败！");                                    
+		alert("Transfer failed!");                                    
 	</script>	
 <% }%>
 
@@ -73,11 +73,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	if(userChangePasswd == "N") {%>
 	<script type="text/javascript" language="javascript">
-		alert("修改密码失败！您输入的旧密码不正确");                                    
+		alert("Failed to change password! The old password you entered is incorrect");                                    
 	</script>	
 <% }else if(userChangePasswd == "errorPasswd"){%>
 	<script type="text/javascript" language="javascript">
-		alert("您输入的旧密码不正确，请重新输入");
+		alert("The old password you entered is incorrect. Please re-enter");
 	</script>
 <% } %>
 <!-- 显示查询到的绑定信息 -->
@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>个人中心</title>
+<title>Personal center</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/personal.css">
@@ -103,46 +103,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="personal">
   <div class="span7" id="Accordion1">
     <div  class="nav">
-      <h3>个人信息</h3>
+      <h3>Personal information</h3>
       <div class="index">
-        <p><a href="javascript:showDiv(1)">修改信息</a></p>
-        <p><a href="javascript:showDiv(2)">修改密码</a></p>
+        <p><a href="javascript:showDiv(1)">Modify information</a></p>
+        <p><a href="javascript:showDiv(2)">Modify password</a></p>
       </div>
-      <h3>积分转移</h3>
+      <h3>Bonus transfer</h3>
       <div class="index">
-        <p><a href="javascript:showDiv(3)">积分转移到平台</a></p>
-        <p><a href="javascript:showDiv(4)">积分转移到商家</a></p>
+        <p><a href="javascript:showDiv(3)">Transfer Bonus to the platform</a></p>
+        <p><a href="javascript:showDiv(4)">Transfer Bonus to the Merchant</a></p>
       </div>
-      <h3>绑定商家</h3>
+      <h3>Binding merchant</h3>
       <div class="index">
-        <p><a href="javascript:showDiv(5)">绑定新商家</a></p>
-        <p><a href="javascript:showDiv(6)">显示已绑定商家</a></p>
+        <p><a href="javascript:showDiv(5)">Bind a new merchant</a></p>
+        <p><a href="javascript:showDiv(6)">Show bound merchants</a></p>
       </div>
     </div>
   </div>
   <div class="span8">
     <div id="div1">
-      <p class="title">个人资料 <span class="title1">USER INFOMATION</span></p>
+      <p class="title">Personal information <span class="title1">USER INFOMATION</span></p>
       <form action="/bonusPointsExchange/actionServlet" method="post">
         <table>
         <!--  <tr>
-            <td>账&nbsp;号：</td>
+            <td>Account</td>
             <td><input name="userName" type="text" id="userName" maxlength="40"></td>
           </tr>  -->
           <tr>
-            <td>邮&nbsp;箱：</td>
+            <td>E-mail:</td>
             <td><input name="email" type="text" id="email" maxlength="40" value=<%=request.getAttribute("email") %> readonly></td>
           </tr>
           <tr>
-            <td>姓&nbsp;名：</td>
+            <td>Fullname</td>
             <td><input name="fullName" type="text" id="name" maxlength="40" value=<%=request.getAttribute("fullName") %>></td>
           </tr>
           <tr>
-            <td>电&nbsp;话：</td>
+            <td>Tel:</td>
             <td><input name="phone" type="text" id="phone" maxlength="40" value=<%=request.getAttribute("phone") %>></td>
           </tr>
           <tr>
-            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="提交"></td>
+            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="Submit"></td>
               </td>
           </tr>
         </table>
@@ -151,23 +151,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </form>
     </div>
     <div id="div2">
-      <p class="title">修改密码 <span class="title1">USER　PASSWORD</span></p>
+      <p class="title">Change Password <span class="title1">USER　PASSWORD</span></p>
       <form action="/bonusPointsExchange/actionServlet" onsubmit="return checkInputPasswd();">
         <table>
         <tr>
-            <td>用户名：</td>
+            <td>Account name:</td>
             <td><input name="name" readonly="readonly"  type="text" id="name" value="<%=session.getAttribute("userName")%>" maxlength="40" style="border:none;"></td>
           </tr>
           <tr>
-            <td>旧密码：</td>
+            <td>Old password:</td>
             <td><input name="oldPassword" type="password" id="oldPassword" maxlength="20"></td>
           </tr>
           <tr>
-            <td>新密码：</td>
+            <td>New password</td>
             <td><input name="newPassword" type="password" id="newPassword" maxlength="20"></td>
           </tr>
           <tr>
-            <td>再次输入新密码：</td>
+            <td>Enter new password again:</td>
             <td><input name="reNewPassword" type="password" id="reNewPassword" maxlength="20" onblur="checkInputPasswd()"></td>
           </tr>
           <tr>
@@ -180,11 +180,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </form>
     </div>
     <div id="div3">
-      <p class="title">积分转移到平台 <span class="title1">POINTS TRANSFER TO PLATFORM</span></p>
+      <p class="title">Transfer Bonus to the platform <span class="title1">POINTS TRANSFER TO PLATFORM</span></p>
       <form action="/bonusPointsExchange/UserPointToplatformServlet"  method="post" onsubmit="return checkForm();">
         <table>
           <tr>
-            <td>选择商家：</td>
+            <td>Select the platform:</td>
             <td><select  class="normal-font" name="shop" id="shop">
             <option selected="selected" ></option>
              <% if(null != list) {
@@ -198,33 +198,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </select></td>
           </tr>
            <tr>
-            <td>在商家注册的用户名：</td>
+            <td>User name registered in the merchant:</td>
             <td><input name="userName" onblur="queryUserPoints()" type="text" value="" id="userName">
             </td>
           </tr>
           <tr>
-            <td>商家积分：</td>
+            <td>Bonus in merchant:</td>
             <td><input name="points" type="text" value="" readonly id="points" style="border:none;"> 
             </td>
           </tr>
           <tr>
-            <td>转移积分：</td>
+            <td>Transfer Bonus:</td>
             <td><input name="transfer_points"  type="number" value="0" id="transfer_points">
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="提交"></td>
+            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="Submit"></td>
               </td>
           </tr>
         </table>
       </form>
     </div>
     <div id="div4">
-      <p class="title">积分转移到商家 <span class="title1">POINTS TRANSFER TO SHOP</span></p>
+      <p class="title">Transfer bonus to merchant<span class="title1">POINTS TRANSFER TO SHOP</span></p>
       <form action="/bonusPointsExchange/PlatformToUserServlet"  method="post" onsubmit="return checkForm();">
         <table>
           <tr>
-            <td>选择商家：</td>
+            <td>Select merchant:</td>
             <td><select  class="normal-font" onchange="queryPointsAtPlatform()" name="shop2" id="shop2">
             <option selected="selected"></option>
               <% if(null != list) {
@@ -237,32 +237,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </select></td>
           </tr>
            <tr>
-            <td>在商家注册的用户名：</td>
+            <td>User name registered in the merchant:</td>
             <td><input name="userName2" type="text" value="" id="userName2">
             </td>
           </tr>
           <tr>
-            <td>平台积分：</td>
+            <td>Bonus in platform:</td>
             <td><input name="platformPoints" type="text" value="" readonly id="platformPoints" style="border:none;"></td>
           </tr>
           <tr>
-            <td>转移积分：</td>
+            <td>Transfer Bonus:</td>
             <td><input name="transfer_points" type="number" value="0" id="transfer_points"></td>
           </tr>
           <tr>
-            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="提交"></td>
+            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="Submit"></td>
               <td></td>
           </tr>
         </table>
       </form>
     </div>
     <div id="div5">
-      <p class="title">商家绑定 <span class="title1">SHOP BIND</span></p>
+      <p class="title">Merchant binding<span class="title1">SHOP BIND</span></p>
       <form action="/bonusPointsExchange/BindShopQueryInfoServlet" method="post"  onsubmit="return checkBindForm();">
       <br/>
-      <div> &nbsp;<span class="normal-font">商家名称：</span>
-      	<input name="search"  type="text" id="search" placeholder="请输入商家名称"> &nbsp;&nbsp;&nbsp;
-      	<input name="submit2" type="submit" class="submitBtn" id="submit2" value="搜索">
+      <div> &nbsp;<span class="normal-font">Merchant name:</span>
+      	<input name="search"  type="text" id="search" placeholder="Enter merchant name please"> &nbsp;&nbsp;&nbsp;
+      	<input name="submit2" type="submit" class="submitBtn" id="submit2" value="Search">
       </div>
       <!------------table 中为查询结果--------每一行是一个商家---------------->
        <%
@@ -271,8 +271,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <table>
       	<tr><span id="hint" style="color:#FF0000"></span></tr>
           <tr class="normal-font">
-            <td class="shop-logo"><img src="images/shopLogo/${imgURL }" alt="商家商标"/><p>${shopName}</p></td><td>${shopDec}</td>
-            <td class="bindBtn"><a href="bindShop.jsp?shopName=${shopName}"><input name="bind" type="button" id="bind" class="buttonStyle1" value="绑定"></a></td>
+            <td class="shop-logo"><img src="images/shopLogo/${imgURL }" alt="Merchant logo"/><p>${shopName}</p></td><td>${shopDec}</td>
+            <td class="bindBtn"><a href="bindShop.jsp?shopName=${shopName}"><input name="bind" type="button" id="bind" class="buttonStyle1" value="Bind"></a></td>
           </tr>
        </table>
        <%} %>
@@ -280,7 +280,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     
     <div id="div6">
-      <p class="title">查看商家 <span class="title1">BOUND　SHOP</span></p>
+      <p class="title">View merchant <span class="title1">BOUND　SHOP</span></p>
       <form>
         <table>
         <% 	if(null != list) {
@@ -288,7 +288,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		ShowBindInfo bindInfo = (ShowBindInfo)list.get(i);
         %>
           <tr>
-            <td class="shop-logo"><img src="images/shopLogo/<%=bindInfo.getImgURL() %>" alt="商家商标"/></td><td><%=bindInfo.getShopName() %></td>
+            <td class="shop-logo"><img src="images/shopLogo/<%=bindInfo.getImgURL() %>" alt="Merchant's logo"/></td><td><%=bindInfo.getShopName() %></td>
             <td><input name="points" type="text" class="inputNum" id="points" value="<%=bindInfo.getPlatformPoints() %>" maxlength="20" readonly></td>
           </tr>
          <%}
@@ -414,7 +414,7 @@ function checkInputPasswd(){
 	var newPassword = document.getElementById("newPassword").value;
 	var reNewPassword = document.getElementById("reNewPassword").value;
 	if(newPassword!=reNewPassword){
-		alert("您输入的两次新密码不一致");
+		alert("The two new passwords you entered are inconsistent");
 		return false;
 	}else return true;
 	
@@ -426,7 +426,7 @@ function checkForm() {
 	var shop2 = document.getElementById("shop2").value;
 	//alert(shopName);
 	if (shop == "" && shop2 == "") {
-		alert("请选择商家！");
+		alert("Select the merchant please");
 		return false;
 	}
 	
@@ -435,13 +435,13 @@ function checkForm() {
 	var userName2 = document.getElementById("userName2").value;
 	//alert(shopName);
 	if (userName == "" && userName2=="" ) {
-		alert("在商家注册的名称不能为空！");
+		alert("The name registered in the Merchant cannot be empty!");
 		return false;
 	}
 	
 	var transfer_points = document.getElementById("transfer_points").value;
 	if (transfer_points == "") {
-		alert("转移积分不能为空！");
+		alert("Transfer Bonus cannot be empty!");
 		return false;
 	}
  }
@@ -450,7 +450,7 @@ function checkForm() {
 	var shop2 = document.getElementById("search").value;
 	//alert(shopName);
 	if (shop2 == "") {
-		alert("请输入商家名称！");
+		alert("Enter the Merchant name please!");
 		return false;
 	}
 }

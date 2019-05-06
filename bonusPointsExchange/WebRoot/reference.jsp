@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(newOrder == "N") {
 %>
   <script type="text/javascript" language="javascript">
-    alert("您选择的商家现在没有最新的交易记录！");                            
+    alert("The business you selected does not have the latest transaction history now!");                            
   </script> 
 <% }%>
 
@@ -18,7 +18,7 @@ String userName = (String)request.getSession().getAttribute("userName");
 String shopName = (String)request.getSession().getAttribute("shopName");	
 if(userName == null && shopName == null) { %>
 	<script type="text/javascript" language="javascript">
-		alert("您还没有登录！请登录！");    // 弹出错误信息
+		alert("You are not logged in yet! please sign in!");    // 弹出错误信息
 		window.location.href="/bonusPointsExchange/login.jsp" ;                             
 	</script>	
 <% }%>
@@ -27,7 +27,7 @@ if(userName == null && shopName == null) { %>
 <html>
 <head>
 <meta charset="utf-8">
-<title>参考价</title>
+<title>Reference Price</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/footer.css" >
 <link rel="stylesheet" type="text/css" href="css/order.css">
@@ -39,22 +39,22 @@ if(userName == null && shopName == null) { %>
 <!--这是main_page-->
 <div class="referenceOrder">
   <div>
-    <p class="title">参考价<span class="title1">&nbsp;&nbsp;&nbsp;REFERENCE PRICE</span></p>
+    <p class="title">Reference Price<span class="title1">&nbsp;&nbsp;&nbsp;REFERENCE PRICE</span></p>
   </div>
   <%if(request.getAttribute("shopName") == null) { %>
   <div> &nbsp;	
  	 <form action="/bonusPointsExchange/ReferencePriceServlet" method="post" onsubmit="return checkForm();">
-      	商家名称：<input name="search1" value="" type="text" id="search1" placeholder="请输入商家名称"> &nbsp;&nbsp;&nbsp;
-      	目标商家名称：<input name="search2" value="${wantedShop }" type="text" id="search2" placeholder="请输入商家名称"> &nbsp;&nbsp;&nbsp;
-      	<input name="submit2" type="submit" class="submitBtn" id="submit2" value="搜索">
+      	Merchant name:<input name="search1" value="" type="text" id="search1" placeholder="Enter merchant name please"> &nbsp;&nbsp;&nbsp;
+      	Target merchant name:<input name="search2" value="${wantedShop }" type="text" id="search2" placeholder="Enter merchant name please"> &nbsp;&nbsp;&nbsp;
+      	<input name="submit2" type="submit" class="submitBtn" id="submit2" value="search">
       </form>
   </div>
   <% } else {%>
   <div> &nbsp;	
  	 <form action="/bonusPointsExchange/ReferencePriceServlet" method="post">
-      	商家名称：<input name="search1" value="${shopName }" type="text" id="search1" placeholder="请输入商家名称"> &nbsp;&nbsp;&nbsp;
-      	目标商家名称：<input name="search2" value="${wantedShop }" type="text" id="search2" placeholder="请输入商家名称"> &nbsp;&nbsp;&nbsp;
-      	<input name="submit2" type="submit" class="submitBtn" id="submit2" value="搜索">
+      	Merchant name:<input name="search1" value="${shopName }" type="text" id="search1" placeholder="Enter merchant name please"> &nbsp;&nbsp;&nbsp;
+      	Target merchant name:<input name="search2" value="${wantedShop }" type="text" id="search2" placeholder="Enter merchant name please"> &nbsp;&nbsp;&nbsp;
+      	<input name="submit2" type="submit" class="submitBtn" id="submit2" value="Search">
       </form>
   </div>
   <%} %>
@@ -67,11 +67,11 @@ if(userName == null && shopName == null) { %>
     <table>
       <tr>
         <td rowspan="3" class="table-td-img"><img src="images/shopLogo/${ShopImgURL }"/><p>${shopName }</p></td>
-        <td>最新比例 ： ${latestRate }</td>
+        <td>Latest ratio: ${latestRate }</td>
         <td rowspan="3" class="table-td-img"><img src="images/shopLogo/${wantedShopImgURL }"/><p>${wantedShop }</p></td>
       </tr>
-      <tr><td>提供积分：  ${point }<img src="images/2.png"/> 兑换积分： ${wantedPoint }</td></tr>
-      <tr><td>平均比例  ： ${averageRate }</td></tr>
+      <tr><td>Provide Bonus: ${point }<img src="images/2.png"/> Exchange bonus: ${wantedPoint }</td></tr>
+      <tr><td>Average ratio: ${averageRate }</td></tr>
     </table>
      <%}%>
   </div>
@@ -86,13 +86,13 @@ function checkForm() {
 	var shopName = document.getElementById("search1").value;
 	//alert(shopName);
 	if (shopName == "") {
-		alert("商家名不能为空！");
+		alert("Merchant name cannot be empty");
 		return false;
 	}
 	
 	var wantedShop = document.getElementById("search2").value;
 	if (wantedShop == "") {
-		alert("目标商家名不能为空！");
+		alert("Target merchant name cannot be empty");
 		return false;
 	}
  }

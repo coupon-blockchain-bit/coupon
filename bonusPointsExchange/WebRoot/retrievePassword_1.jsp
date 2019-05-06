@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>忘记密码</title>
+<title>Forgot password</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link href="css/regist.css" rel="stylesheet" type="text/css">
@@ -34,13 +34,13 @@ function checkForm() {
 	// alert("ada");
 	var userName = document.getElementById("userName").value;
 	if (userName == "" || userName == null) {
-		alert("用户名不能为空！");
+		alert("Username cannot be empty");
 		return false;
 	}
 	
 	var email = document.getElementById("email").value;
 	if (email == "") {
-		alert("邮箱不能为空！");
+		alert("E-mail cannot be empty");
 		return false;
 	}
 }
@@ -53,30 +53,30 @@ function checkForm() {
 <!--header -->
 <div class="repsw-form">
 <div class="retrieve">
-  <p class="title">找回密码&nbsp;&nbsp;&nbsp;&nbsp;<span class="title1">RETRIEVE　PASSWORD</span> <span class="title1 right"><a href="login.jsp">立即登录</a>&nbsp;&nbsp;&nbsp;</span></p>
-  <div><span id="step-title1">STEP1:安全验证</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="step-title2">STEP2:重置密码</span></div>
+  <p class="title">Retrieve password&nbsp;&nbsp;&nbsp;&nbsp;<span class="title1">RETRIEVE　PASSWORD</span> <span class="title1 right"><a href="login.jsp">Log in now</a>&nbsp;&nbsp;&nbsp;</span></p>
+  <div><span id="step-title1">STEP1:safety verification</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="step-title2">STEP2:reset Password</span></div>
     <div class="span5">
     <div id="step1">
       <form action="/bonusPointsExchange/actionServlet" method="post"  onsubmit="return checkForm();">
         <table>
           <tr>
-            <td>账&nbsp;号：</td>
+            <td>Account:</td>
             <td><input name="userName" type="text" id="userName" maxlength="20"></td>
           </tr>
        <!--   <tr>
-            <td>密&nbsp;码：</td>
+            <td>Password:</td>
             <td><input name="password" type="password" id="password" maxlength="20"></td>
           </tr>
           <tr>
-            <td>确认密码：</td>
+            <td>Password again:</td>
             <td><input name="repassword" type="password" id="repassword" maxlength="20"></td>
           </tr>   ---->
           <tr>
-            <td>邮&nbsp;箱：</td>
+            <td>E-mail:</td>
             <td><input name="email" type="text" id="email" maxlength="40"></td>
           </tr>
           <tr>
-            <td colspan="2" class="mid"><input name="next" type="submit" class="submitBtn" id="next" value="提交" ></td>
+            <td colspan="2" class="mid"><input name="next" type="submit" class="submitBtn" id="next" value="Submit" ></td>
           </tr> 
         </table>
         <input type="hidden" name="actionCode" value="forgetPasswd">

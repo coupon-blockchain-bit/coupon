@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>忘记密码</title>
+<title>Forgot Password</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link href="css/footer.css" rel="stylesheet" type="text/css">
 <link href="css/regist.css" rel="stylesheet" type="text/css">
@@ -21,23 +21,23 @@ function checkForm() {
 	// alert("ada");
 	var userName = document.getElementById("userName").value;
 	if (userName == "" || userName == null) {
-		alert("用户名不能为空！");
+		alert("UserName cannot be empty");
 		return false;
 	}
 	
 	var password = document.getElementById("password").value;
 	if (password == "") {
-		alert("密码不能为空！");
+		alert("Password cannnot be empty");
 		return false;
 	}
 	
 	var repassword = document.getElementById("repassword").value;
 	if (repassword == "") {
-		alert("确认密码不能为空！");
+		alert("Confirm password cannot be empty");
 		return false;
 	}
 	if(password != repassword){
-	    alert("两次密码输入不一致！");
+	    alert("The password input is inconsistent twice!");
 	    return false;
 	}
 }
@@ -50,25 +50,25 @@ function checkForm() {
 <!--header -->
 <div class="repsw-form">
 <div class="retrieve">
-  <p class="title">找回密码&nbsp;&nbsp;&nbsp;&nbsp;<span class="title1">RETRIEVE PASSWORD</span> <span class="title1 right"><a href="login.jsp">立即登录</a>&nbsp;&nbsp;&nbsp;</span></p>
-   <div><span id="step-title1" style="color:grey;">STEP1:安全验证</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="step-title2" style="color:blue;">STEP2:重置密码</span></div>
+  <p class="title">Retrieve password&nbsp;&nbsp;&nbsp;&nbsp;<span class="title1">RETRIEVE PASSWORD</span> <span class="title1 right"><a href="login.jsp">Log in now</a>&nbsp;&nbsp;&nbsp;</span></p>
+   <div><span id="step-title1" style="color:grey;">STEP1:safety verification</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="step-title2" style="color:blue;">STEP2:Reset password</span></div>
       <div id="step2">
       <form action="/bonusPointsExchange/actionServlet" method="post" onsubmit="return checkForm();">
       <table>
       	  <tr>
-      	    <td>帐&nbsp;号：</td>
+      	    <td>Account:</td>
             <td><input name="userName" type="userName" id="userName" value="<%=userName %>" maxlength="20"></td>
           </tr>	
           <tr>
-            <td>新密码：</td>
+            <td>New password</td>
             <td><input name="newPassword" type="password" id="password" maxlength="20"></td>
           </tr>
           <tr>
-            <td>确认密码：</td>
+            <td>Password again:</td>
             <td><input name="rePassword" type="password" id="repassword" maxlength="20"></td>
           </tr> 
           <tr>
-            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="确认"></td>
+            <td colspan="2" class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="Submit"></td>
           </tr>
         </table>
         <input type="hidden" name="actionCode" value="resetPasswd">

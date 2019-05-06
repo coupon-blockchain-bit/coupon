@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+·<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.bit.bonusPointsExchange.bean.Order"%>
 <%
 String path = request.getContextPath();
@@ -21,11 +21,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(releaseOrderRes == "N") {
 %>
   <script type="text/javascript" language="javascript">
-    alert("发布订单失败！");                            
+    alert("Failed to issue the order.");                            
   </script> 
 <% } else if(releaseOrderRes == "Y") {%>
   <script type="text/javascript" language="javascript">
-    alert("发布订单 成功！");                                      
+    alert("The order was issued successfully.");                                      
   </script> 
 <% }%>
 
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>发布订单</title>
+<title>Release an order</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/footer.css" >
 <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--这是main_page-->
 <div class="main">
   <div id="orderNav">
-    <h3>订单中心</h3>
+    <h3>Order center</h3>
     <p><a href="javascript:showDiv(1)">发布新订单</a> </p>
     <p><a href="javascript:showDiv(2)">查看个人订单</a></p>
     <p><a href="javascript:showDiv(3)">搜索所有订单</a></p>
@@ -84,51 +84,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div id="orderContent">
     <div id="div1">
       <div class="releaseOrder">
-        <p class="title">发布新订单<span class="title1">&nbsp;&nbsp;REALEASE ORDER</span><span class="title1 right"><a href="reference.jsp">前往参考价</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+        <p class="title">Release the new order<span class="title1">&nbsp;&nbsp;REALEASE ORDER</span><span class="title1 right"><a href="reference.jsp">前往参考价</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
         <form action="/bonusPointsExchange/actionServlet" method="post" onsubmit="return checkShop()&&checkPoint()&&checkNull();">
        
           <table>
             <tr>
-              <td>选择商家：</td>
+              <td>Select the merchant:</td>
               <td><select  class="normal-font" name="shopName" id="shopName" onchange="queryValidPoints()" >
-                  <option selected="selected">请选择-------</option>
+                  <option selected="selected">Select please-------</option>
                   <c:forEach items="${bindShops}" var="bindShops">
                     <option>${bindShops.shopName}</option>               
                   </c:forEach>
                 </select></td>
             </tr>
              <tr>
-              <td>有效积分数量：</td>
+              <td>The number of effective bonus:</td>
               <td><input name="platPoint" type="number" readonly id="platPoint"></td>
               <td><label id="tip1"></label></td>        
             </tr>
             <tr>
-              <td>积分数量：</td>
+              <td>The number of bonus:</td>
               <td><input name="points" type="number"  id="points" min="0" value="0" onblur="checkPoint()"></td>
             </tr>
             <tr>
-              <td>选择目标商家：</td>
+              <td>Select the Target merchant:</td>
               <td><select name="wantedShop"  class="normal-font" id="wantedShop" >
-                  <option selected="selected">请选择-------</option>
+                  <option selected="selected">Select please-------</option>
                    <c:forEach items="${bindShops}" var="bindShops">
                     <option>${bindShops.shopName}</option>               
                   </c:forEach>
                 </select></td>
             </tr>
             <tr>
-              <td>目标积分数量：</td>
+              <td>The number of Target bonus:</td>
               <td><input name="wantedPoint" type="number"  id="wantedPoint" min="0" value="0"></td>
             </tr>
             <tr>
-              <td>截止日期：</td>
+              <td>Deadline:</td>
               <td><div id="utilDate" name="utilDate" runat="server"></td>
               <input id="utilDate2" name="utilDate2" type="hidden">
              <!--  <div id="utilDate" name="utilDate" RUNAT=SERVER>
               <input name="utilDate" id="utilDate" type="text"> -->
             </tr>
             <tr class="mid">
-              <td><input name="submit" type="submit" id="submit" value="提交" ></td>
-              <td><input name="reset" type="reset" id="reset" value="重置"></td>
+              <td><input name="submit" type="submit" id="submit" value="Submit" ></td>
+              <td><input name="reset" type="reset" id="reset" value="Reset"></td>
             </tr>
           </table>
           <input type="hidden" name="actionCode" value="order"/>
@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <!-----个人订单--------->
     <div id="div2">
-      <p class="title">查看个人订单<span class="title1">&nbsp;&nbsp;PERSONAL ORDER</span></p>
+      <p class="title">View individual orders<span class="title1">&nbsp;&nbsp;PERSONAL ORDER</span></p>
       <div id="order-list" class="clearfix"> 
         <!---- 事例1------>        <div class="order-info clearfix">
           <ul >
@@ -151,13 +151,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li class="myOrder-info">
               <table>
             	<tr>           	    
-            		<td>商家：<%=orderInfo.getShopName() %></td>             		            		
+            		<td>Merchant:<%=orderInfo.getShopName() %></td>             		            		
               	</tr>
                 <tr>
-                  <td>积分数量：<%=orderInfo.getPoint() %></td>                
+                  <td>Number of bonus:<%=orderInfo.getPoint() %></td>                
                 </tr>
                 <tr>
-                  <td>截止日期：<%=orderInfo.getUntilDate() %></td>                 
+                  <td>Dealline:<%=orderInfo.getUntilDate() %></td>                 
                 </tr>       
          	</table>
             </li>		
@@ -165,10 +165,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li class="myOrder-info">
               <table>
             	<tr>           	               		
-            		<td>目标商家：<%=orderInfo.getWantedShop() %></td>
+            		<td>Target merchant:<%=orderInfo.getWantedShop() %></td>
               	</tr>
                 <tr>
-                   <td>目标积分数量：<%=orderInfo.getWantedPoint() %></td>
+                   <td>Number of target bonus:<%=orderInfo.getWantedPoint() %></td>
                 </tr>
                 <tr>
                   <td></td>                
@@ -177,14 +177,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </li>	      			
             <%if(orderInfo.getOrderStatus() == 0) { %>
             <li class="operate">
-              <input name="exchange" onclick="changOrderStatus(<%=orderInfo.getOrderID() %>)" type="button" class="submitBtn" id="exchange" value="取消">
+              <input name="exchange" onclick="changOrderStatus(<%=orderInfo.getOrderID() %>)" type="button" class="submitBtn" id="exchange" value="Cancel">
             </li>
             <%} else if(orderInfo.getOrderStatus() == 1) {%>
              <li class="operate">
-              <input name="exchange" type="button" class="submitBtn"  style="background:#EDEDED;" disabled="disabled" id="exchange" value="已完成">
+              <input name="exchange" type="button" class="submitBtn"  style="background:#EDEDED;" disabled="disabled" id="exchange" value="Completed">
             </li>
             <%} else if(orderInfo.getOrderStatus() == 2) {%>             <li class="operate" >
-              <input name="exchange" type="button" class="submitBtn" style="background:#EDEDED;" disabled="disabled" id="exchange" value="已失效">
+              <input name="exchange" type="button" class="submitBtn" style="background:#EDEDED;" disabled="disabled" id="exchange" value="Expired">
             </li>
             <%} %>         <%}
        }%>
@@ -193,35 +193,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>   
    </div>
     <!----------- 搜索订单------------------------------>
-    <div id="div3">      <p class="title">查看所有订单<span class="title1">&nbsp;&nbsp;ALL ORDER</span></p>
+    <div id="div3">      <p class="title">View all orders<span class="title1">&nbsp;&nbsp;ALL ORDER</span></p>
       <div id="search">
       <form action="/bonusPointsExchange/actionServlet" method="post" onsubmit="return checkForm();">
         <table>
           <tr>
-            <td>商&nbsp;家：&nbsp;</td><td><input name="shop" type="text" value="${shop }" id="shop"></td>
-            <td>积&nbsp;分：&nbsp;</td><td><input name="point" type="number" value="${point}" id="point" min="1"></td>
+            <td>Merchant:&nbsp;</td><td><input name="shop" type="text" value="${shop }" id="shop"></td>
+            <td>Bonus:&nbsp;</td><td><input name="point" type="number" value="${point}" id="point" min="1"></td>
           </tr>
           <tr>
-          	<td>目标商家：</td><td><input name="targetShop" type="text" value="${wantedShop }" id="targetShop"></td>
-          	<td>目标积分：</td><td><input name="wantedPoint2" type="number" value="${wantedPoint}" id="wantedPoint2" min="1"></td>
-            <td colspan="2" ><input name="submit" type="submit" class="submitBtn" id="submit" value="搜索"></td> 
+          	<td>Target merchant:</td><td><input name="targetShop" type="text" value="${wantedShop }" id="targetShop"></td>
+          	<td>Target Bonus:</td><td><input name="wantedPoint2" type="number" value="${wantedPoint}" id="wantedPoint2" min="1"></td>
+            <td colspan="2" ><input name="submit" type="submit" class="submitBtn" id="submit" value="Search"></td> 
           </tr>
         </table>          
-           选择排序方式：
+           Select the sorting method:
       <select name="selectSort"  id="selectSort">
     <c:if test="${selectID==null}">  
-       <option selected="selected">积分优先</option>               
-        <option>比率优先</option>
-         <option>时效优先</option>
+       <option selected="selected">Bonus First</option>               
+        <option>Ratio First</option>
+         <option>Aging First</option>
      </c:if>
       <c:if test="${selectID=='2'}">  
-       <option>积分优先</option>               
-        <option selected="selected">比率优先</option>
-         <option>时效优先</option>     </c:if>
+       <option>Bonus First</option>               
+        <option selected="selected">Ratio First</option>
+         <option>Aging First</option>     </c:if>
      <c:if test="${selectID=='3'}">    
-    	 <option>积分优先</option>              
-     	 <option>比率优先</option>
-       	 <option selected="selected">时效优先</option>
+    	 <option>Bonus First</option>              
+     	 <option>Ratio First</option>
+       	 <option selected="selected">Aging First</option>
      </c:if>
       </select>
       <input type="hidden" name="actionCode" value="order"/>
@@ -237,11 +237,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <tr><form action="/bonusPointsExchange/actionServlet" method="post">
       <td><input type="hidden" name="orderID" value="<%=orderInfo.getOrderID()%>"/></td>
       <td class="shop-logo"> <img src="images/shopLogo/<%=orderInfo.getShopLogo()%>"/> <p><%=orderInfo.getWantedShop()%></p></td>
-      <td><%=orderInfo.getWantedPoint() %>积分<img src="images/2.png"/><%=orderInfo.getPoint() %>积分</td>      
+      <td><%=orderInfo.getWantedPoint() %>Bonus<img src="images/2.png"/><%=orderInfo.getPoint() %>Bonus</td>      
       <td class="shop-logo"><img src="images/shopLogo/<%=orderInfo.getWantedShopLogo() %>"/> <p><%=orderInfo.getShopName() %></p></td>      
-      <td><p>订单发布方：<%=orderInfo.getUserName() %></p>
-      <p>交易有效期：<%=orderInfo.getUntilDate() %></p></td>
-      <td class="operate"><p>&nbsp;</p><input name="submit" type="submit" class="submitBtn" id="submit" value="兑换"></td>
+      <td><p>Order publisher:<%=orderInfo.getUserName() %></p>
+      <p>Transaction validity period:<%=orderInfo.getUntilDate() %></p></td>
+      <td class="operate"><p>&nbsp;</p><input name="submit" type="submit" class="submitBtn" id="submit" value="Exchange"></td>
       <input type="hidden" name="actionCode" value="order"/>
       <input type="hidden" name="methodCode" value="finsh_order"/>
       </form>
@@ -255,11 +255,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <tr><form action="/bonusPointsExchange/actionServlet" method="post">
       <td><input type="hidden" name="orderID" value="<%=orderInfo.getOrderID()%>"/></td>
       <td class="shop-logo"> <img src="images/shopLogo/<%=orderInfo.getShopLogo()%>"/> <p><%=orderInfo.getWantedShop() %></p></td>
-      <td><%=orderInfo.getWantedPoint() %>积分<img src="images/2.png"/><%=orderInfo.getPoint() %>积分</td>
+      <td><%=orderInfo.getWantedPoint() %>Bonus<img src="images/2.png"/><%=orderInfo.getPoint() %>Bonus</td>
       <td class="shop-logo"><img src="images/shopLogo/<%=orderInfo.getWantedShopLogo() %>"/> <p><%=orderInfo.getShopName() %></p></td>
-      <td><p>订单发布方：<%=orderInfo.getUserName() %></p>
-      <p>交易有效期：<%=orderInfo.getUntilDate() %></p></td>
-      <td class="operate"><p>&nbsp;</p><input name="submit" type="submit" class="submitBtn" id="submit" value="兑换"></td>
+      <td><p>Order publisher:<%=orderInfo.getUserName() %></p>
+      <p>Transaction validity period:<%=orderInfo.getUntilDate() %></p></td>
+      <td class="operate"><p>&nbsp;</p><input name="submit" type="submit" class="submitBtn" id="submit" value="Exchange"></td>
       <input type="hidden" name="actionCode" value="order"/>
       <input type="hidden" name="methodCode" value="finsh_order"/>
       </form>
@@ -274,18 +274,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <tr><form action="/bonusPointsExchange/actionServlet" method="post">
       		<td><input type="hidden" name="orderID" value="${order.orderID}"/></td>
         	<td class="shop-logo"> <img src="images/shopLogo/${order.shopLogo}"/> <p >${order.wantedShop}</p></td>
-        	<td>${order.wantedPoint}积分<img src="images/2.png"/>${order.point}积分</td>
+        	<td>${order.wantedPoint}Bonus<img src="images/2.png"/>${order.point}Bonus</td>
         	<td class="shop-logo"><img src="images/shopLogo/${order.wantedShopLogo}"/> <p>${order.shopName}</p></td>
-        	<td><p>订单发布方：${order.userName}</p>
-        	<p>交易有效期：${order.untilDate}</p></td>
-        	<td class="operate"><p>&nbsp;</p><input name="submit" type="submit" class="submitBtn" id="submit" value="兑换"></td>
+        	<td><p>Order Publisher${order.userName}</p>
+        	<p>Transaction validity period:${order.untilDate}</p></td>
+        	<td class="operate"><p>&nbsp;</p><input name="submit" type="submit" class="submitBtn" id="submit" value="Exchange"></td>
 			<input type="hidden" name="actionCode" value="order"/>
          	<input type="hidden" name="methodCode" value="finsh_order"/>
       	</form>
       </tr>
        </c:forEach>
        <%}else if(findRes=="true" && null == AllOrderByRateList && null == AllOrderByUntilDate){%> 
-     		<br/><br/><br/><p align="center"><a href="javascript:recommend();">搜索结果为0！可以使用智能推荐功能来匹配您的需求</a></p>   
+     		<br/><br/><br/><p align="center"><a href="javascript:recommend();">The result of searching is0!You can use smart recommendations to match your needs.</a></p>   
         <%} %>		                    
       </table>     
         </form>
@@ -360,7 +360,7 @@ function setValue(){
   } 
   alert(point);
   if(obj.value>point){
-    oTip.innerHTML="输入的积分数已超过您在平台的积分数";
+    oTip.innerHTML="The number of bonus entered has exceeded your number of bonus on the platform";
   }else{
     oTip.innerHTML="";
   } 
@@ -406,7 +406,7 @@ function checkPoint(){//判断用户输入积分数是否超过用户在平台�
   var points = document.getElementById("points").value;
   
   if(Number(points)>Number(platPoint)){
-    alert("您输入的积分数量已超出您在平台的积分数量！");
+    alert("The number of bonus entered has exceeded your number of bonus on the platform");
     return false;
   }else return true;
 }
@@ -414,7 +414,7 @@ function checkShop(){//判断积分所属商家与期望兑换商家是否相同
   var shopName = document.getElementById("shopName").value;
   var wantedShop = document.getElementById("wantedShop").value;
   if(shopName==wantedShop){
-    alert("积分所属商家与期望兑换商家不能相同");
+    alert("The merchants of the bonus cannot be the same as the merchants who wish to redeem");
     return false;
   }
   else return true;
@@ -452,19 +452,19 @@ function checkNull(){
   var wantedShop= document.getElementById("wantedShop").value;
   var wantedPoint = document.getElementById("wantedPoint").value;
   if(shopName=="请选择-------"){
-    alert("商家不能为空");
+    alert("The merchant cannot be empty");
     return false;
   }else if(Number(platPoint)==0){
-    alert("您选的商家积分为0，请先将积分转移到平台！");
+    alert("The business bonus you selected are 0. Please transfer the bonus to the platform first!");
     return false;
   }else if(Number(points)<=0){
-    alert("积分数量必须大于0");
+    alert("The number of bonus must be greater than 0");
     return false;
   }else if(wantedShop=="请选择-------"){
-    alert("目标商家不能为空");
+    alert("Target merchant cannot be empty");
     return false;
   }else if(Number(wantedPoint)<=0){
-    alert("目标积分数量必须大于0");
+    alert("Target bonus must be greater than0");
     return false;
   }else return true;
 }
@@ -475,27 +475,27 @@ function checkForm() {
 	var shopName = document.getElementById("shop").value;
 	//alert(shopName);
 	if (shopName == "") {
-		alert("商家名不能为空！");
+		alert("Marchent's name cannot be empty");
 		return false;
 	}
 	
 	var wantedShop = document.getElementById("targetShop").value;
 	if (wantedShop == "") {
-		alert("目标商家名不能为空！");
+		alert("Name of target merchant cannot be empty");
 		return false;
 	}
 	
 	var point = document.getElementById("point").value;
 	//alert(shopName);
 	if (point == "") {
-		alert("积分数量不能为空！");
+		alert("Number of bonus cannot be empty");
 		return false;
 	}
 	
 	var wantedPoint = document.getElementById("wantedPoint2").value;
 	//alert(shopName);
 	if (wantedPoint == "") {
-		alert("目标积分数量不能为空！");
+		alert("Number of target bonus cannot be empty");
 		return false;
 	}
  }

@@ -10,23 +10,22 @@ import java.util.List;
 import com.bit.bonusPointsExchange.bean.Order;
 import com.bit.bonusPointsExchange.bean.Shop;
 import com.bit.bonusPointsExchange.utils.DBUtils;
-import com.sun.org.apache.xpath.internal.operations.And;
 
-//²éÑ¯¶©µ¥Ïà¹ØµÄÊý¾Ý¿â²Ù×÷È«²¿Ð´ÔÚ´Ë´¦,¸Ä±ä¶©µ¥µÄ×´Ì¬
+//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Ð´ï¿½Ú´Ë´ï¿½,ï¿½Ä±ä¶©ï¿½ï¿½ï¿½ï¿½×´Ì¬
 public class QueryOrderManager {
-	
-	//1.¸ù¾ÝÓÃ»§Ãû²éÑ¯ÓÃ»§ËùÓÐµÄ¶©µ¥ÐÅÏ¢£¬´«ÈëµÄÊÇÆ½Ì¨×¢²áµÄÓÃ»§Ãû
-	public List<Order> queryOrderInfo(String userName){
-		Connection conn=DBUtils.getConnection();
+
+	// 1.ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ÐµÄ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨×¢ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+	public List<Order> queryOrderInfo(String userName) {
+		Connection conn = DBUtils.getConnection();
 		LoginShopManger loginShopManger = new LoginShopManger();
 		List<Order> list = new ArrayList<Order>();
-		Statement stmt=null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select *from bonusPointsExchange.order where userName='"+userName+"'");
-								     
-			while(rs.next()) {
+			rs = stmt.executeQuery("select *from bonusPointsExchange.order where userName='" + userName + "'");
+
+			while (rs.next()) {
 				Order orderInfo = new Order();
 				orderInfo.setOrderID(rs.getInt("orderID"));
 				orderInfo.setUserName(userName);
@@ -38,10 +37,10 @@ public class QueryOrderManager {
 				orderInfo.setUntilDate(rs.getString("untilDate"));
 				orderInfo.setOrderDate(rs.getString("orderDate"));
 				orderInfo.setOrderStatus(rs.getInt("orderStatus"));
-				//²éÑ¯ÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop1 = loginShopManger.getShopInfo(rs.getString("shopName"));
 				orderInfo.setShopLogo(shop1.getImgUrl());
-				//²éÑ¯Ä¿±êÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯Ä¿ï¿½ï¿½ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop2 = loginShopManger.getShopInfo(rs.getString("wantedShop"));
 				orderInfo.setWantedShopLogo(shop2.getImgUrl());
 				list.add(orderInfo);
@@ -50,47 +49,52 @@ public class QueryOrderManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
 		return list;
 	}
-	
-	//2.¸Ä±ä¶©µ¥µÄ×´Ì¬
-	public boolean changeOrderStatus(int orderID, int orderStatus){
-		Connection conn=DBUtils.getConnection();
-		Statement stmt=null;
+
+	// 2.ï¿½Ä±ä¶©ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	public boolean changeOrderStatus(int orderID, int orderStatus) {
+		Connection conn = DBUtils.getConnection();
+		Statement stmt = null;
 		try {
 			stmt = conn.createStatement();
-			String sql="update bonusPointsExchange.order set orderStatus='"+orderStatus+"'where orderID='"+orderID+"'";
-			//System.out.println(sql);
+			String sql = "update bonusPointsExchange.order set orderStatus='" + orderStatus + "'where orderID='"
+					+ orderID + "'";
+			// System.out.println(sql);
 			int res = stmt.executeUpdate(sql);
-			if(res != 0) 
+			if (res != 0)
 				return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(null, stmt, conn);
 		}
 		return false;
 	}
-	
-	//3.²éÑ¯¶©µ¥ÐÅÏ¢£¬¸ù¾Ý±ÈÂÊÓÉ¸ßµ½µÍ·µ»Ø¼ÇÂ¼¼¯ºÏ
-	public List<Order> findAllOrderByRate(String shopName,String wantedShop,String userName,int point, int wantedPoint){
-		Connection conn=DBUtils.getConnection();
+
+	// 3.ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ï¿½É¸ßµï¿½ï¿½Í·ï¿½ï¿½Ø¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+	public List<Order> findAllOrderByRate(String shopName, String wantedShop, String userName, int point,
+			int wantedPoint) {
+		Connection conn = DBUtils.getConnection();
 		LoginShopManger loginShopManger = new LoginShopManger();
 		List<Order> list = new ArrayList<Order>();
-		int downPoint = (int)(point - point * 0.1);
-		int upPoint = (int)(point + point * 0.1);	
-		int downWantedPoint = (int)(wantedPoint - wantedPoint * 0.1);
-		int upWantedPoint = (int)(wantedPoint + wantedPoint * 0.1);
-		Statement stmt=null;
+		int downPoint = (int) (point - point * 0.1);
+		int upPoint = (int) (point + point * 0.1);
+		int downWantedPoint = (int) (wantedPoint - wantedPoint * 0.1);
+		int upWantedPoint = (int) (wantedPoint + wantedPoint * 0.1);
+		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select *from bonusPointsExchange.order where shopName='"+wantedShop+"' and wantedShop='"+shopName+"' and orderStatus=0 and userName!='"+userName+"' and wantedPoint >= '"+downPoint+"' and wantedPoint <= '"+upPoint+"' and point >= '"+downWantedPoint+"' and point <= '"+upWantedPoint+"' order by point / wantedPoint desc");                                                 		     
-			while(rs.next()) {
+			rs = stmt.executeQuery("select *from bonusPointsExchange.order where shopName='" + wantedShop
+					+ "' and wantedShop='" + shopName + "' and orderStatus=0 and userName!='" + userName
+					+ "' and wantedPoint >= '" + downPoint + "' and wantedPoint <= '" + upPoint + "' and point >= '"
+					+ downWantedPoint + "' and point <= '" + upWantedPoint + "' order by point / wantedPoint desc");
+			while (rs.next()) {
 				Order orderInfo = new Order();
 				orderInfo.setOrderID(rs.getInt("orderID"));
 				orderInfo.setUserName(rs.getString("userName"));
@@ -102,10 +106,10 @@ public class QueryOrderManager {
 				orderInfo.setUntilDate(rs.getString("untilDate"));
 				orderInfo.setOrderDate(rs.getString("orderDate"));
 				orderInfo.setOrderStatus(rs.getInt("orderStatus"));
-				//²éÑ¯ÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop1 = loginShopManger.getShopInfo(rs.getString("shopName"));
 				orderInfo.setShopLogo(shop1.getImgUrl());
-				//²éÑ¯Ä¿±êÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯Ä¿ï¿½ï¿½ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop2 = loginShopManger.getShopInfo(rs.getString("wantedShop"));
 				orderInfo.setWantedShopLogo(shop2.getImgUrl());
 				list.add(orderInfo);
@@ -114,27 +118,31 @@ public class QueryOrderManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
 		return list;
 	}
-	
-	//4.²éÑ¯¶©µ¥ÐÅÏ¢£¬¸ù¾ÝÊ±Ð§ÓÅÏÈ·µ»Ø¼ÇÂ¼¼¯ºÏ£¬Ê±Ð§ÓÅÏÈÆÚ³¤µÄÔÚÇ°£¬Ò²¾ÍÊÇÐÂ¶©µ¥ÔÚÇ°
-	public List<Order> findAllOrderByUntilDate(String shopName,String wantedShop,String userName,int point, int wantedPoint){
-		Connection conn=DBUtils.getConnection();
+
+	// 4.ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ð§ï¿½ï¿½ï¿½È·ï¿½ï¿½Ø¼ï¿½Â¼ï¿½ï¿½ï¿½Ï£ï¿½Ê±Ð§ï¿½ï¿½ï¿½ï¿½ï¿½Ú³ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½Ç°
+	public List<Order> findAllOrderByUntilDate(String shopName, String wantedShop, String userName, int point,
+			int wantedPoint) {
+		Connection conn = DBUtils.getConnection();
 		LoginShopManger loginShopManger = new LoginShopManger();
 		List<Order> list = new ArrayList<Order>();
-		Statement stmt=null;
+		Statement stmt = null;
 		ResultSet rs = null;
-		int downPoint = (int)(point - point * 0.1);
-		int upPoint = (int)(point + point * 0.1);	
-		int downWantedPoint = (int)(wantedPoint - wantedPoint * 0.1);
-		int upWantedPoint = (int)(wantedPoint + wantedPoint * 0.1);
+		int downPoint = (int) (point - point * 0.1);
+		int upPoint = (int) (point + point * 0.1);
+		int downWantedPoint = (int) (wantedPoint - wantedPoint * 0.1);
+		int upWantedPoint = (int) (wantedPoint + wantedPoint * 0.1);
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select *from bonusPointsExchange.order where shopName='"+wantedShop+"' and wantedShop='"+shopName+"' and userName!='"+userName+"' and wantedPoint >= '"+downPoint+"' and wantedPoint <= '"+upPoint+"' and point >= '"+downWantedPoint+"' and point <= '"+upWantedPoint+"' and orderStatus=0 order by untilDate desc");                                                 		     
-			while(rs.next()) {
+			rs = stmt.executeQuery("select *from bonusPointsExchange.order where shopName='" + wantedShop
+					+ "' and wantedShop='" + shopName + "' and userName!='" + userName + "' and wantedPoint >= '"
+					+ downPoint + "' and wantedPoint <= '" + upPoint + "' and point >= '" + downWantedPoint
+					+ "' and point <= '" + upWantedPoint + "' and orderStatus=0 order by untilDate desc");
+			while (rs.next()) {
 				Order orderInfo = new Order();
 				orderInfo.setOrderID(rs.getInt("orderID"));
 				orderInfo.setUserName(rs.getString("userName"));
@@ -146,10 +154,10 @@ public class QueryOrderManager {
 				orderInfo.setUntilDate(rs.getString("untilDate"));
 				orderInfo.setOrderDate(rs.getString("orderDate"));
 				orderInfo.setOrderStatus(rs.getInt("orderStatus"));
-				//²éÑ¯ÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop1 = loginShopManger.getShopInfo(rs.getString("shopName"));
 				orderInfo.setShopLogo(shop1.getImgUrl());
-				//²éÑ¯Ä¿±êÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯Ä¿ï¿½ï¿½ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop2 = loginShopManger.getShopInfo(rs.getString("wantedShop"));
 				orderInfo.setWantedShopLogo(shop2.getImgUrl());
 				list.add(orderInfo);
@@ -158,23 +166,24 @@ public class QueryOrderManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
 		return list;
 	}
-	
-	//5.²éÑ¯¶©µ¥ÐÅÏ¢£¬´«ÈëµÄÊÇÆ½Ì¨µÄÓÃ»§Ãû£¬¸ù¾ÝÊ±¼ä×îÐÂÅÅÐò£¬Í¬Ê±²éÑ¯ÉÌ¼ÒµÄÍ¼±ê
-	public List<Order> QueryLatestOrder(String userName){
+
+	// 5.ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ½Ì¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½ï¿½Ñ¯ï¿½Ì¼Òµï¿½Í¼ï¿½ï¿½
+	public List<Order> QueryLatestOrder(String userName) {
 		LoginShopManger loginShopManger = new LoginShopManger();
-		Connection conn=DBUtils.getConnection();
+		Connection conn = DBUtils.getConnection();
 		List<Order> list = new ArrayList<Order>();
-		Statement stmt=null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select *from bonusPointsExchange.order where orderStatus=0 order by untilDate desc");                                                 		     
-			while(rs.next()) {
+			rs = stmt
+					.executeQuery("select *from bonusPointsExchange.order where orderStatus=0 order by untilDate desc");
+			while (rs.next()) {
 				Order orderInfo = new Order();
 				orderInfo.setOrderID(rs.getInt("orderID"));
 				orderInfo.setUserName(rs.getString("userName"));
@@ -186,10 +195,10 @@ public class QueryOrderManager {
 				orderInfo.setUntilDate(rs.getString("untilDate"));
 				orderInfo.setOrderDate(rs.getString("orderDate"));
 				orderInfo.setOrderStatus(rs.getInt("orderStatus"));
-				//²éÑ¯ÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop1 = loginShopManger.getShopInfo(rs.getString("shopName"));
 				orderInfo.setShopLogo(shop1.getImgUrl());
-				//²éÑ¯Ä¿±êÉÌ¼ÒÍ¼±ê
+				// ï¿½ï¿½Ñ¯Ä¿ï¿½ï¿½ï¿½Ì¼ï¿½Í¼ï¿½ï¿½
 				Shop shop2 = loginShopManger.getShopInfo(rs.getString("wantedShop"));
 				orderInfo.setWantedShopLogo(shop2.getImgUrl());
 				list.add(orderInfo);
@@ -198,24 +207,25 @@ public class QueryOrderManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
 		return list;
 	}
-	
-	//6.²éÑ¯×îÐÂÍê³ÉµÄ½»Ò×
-	public List<Order> findLatestFinishedOrder(String shopName,String wantedShop){
-		Connection conn=DBUtils.getConnection();
+
+	// 6.ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉµÄ½ï¿½ï¿½ï¿½
+	public List<Order> findLatestFinishedOrder(String shopName, String wantedShop) {
+		Connection conn = DBUtils.getConnection();
 		List<Order> list = new ArrayList<Order>();
-		Statement stmt=null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		System.out.println(shopName);
 		System.out.println(wantedShop);
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select *from bonusPointsExchange.order where shopName='"+shopName+"' and wantedShop='"+wantedShop+"' and orderStatus=1 order by orderDate desc");                                                 		     
-			while(rs.next()) {
+			rs = stmt.executeQuery("select *from bonusPointsExchange.order where shopName='" + shopName
+					+ "' and wantedShop='" + wantedShop + "' and orderStatus=1 order by orderDate desc");
+			while (rs.next()) {
 				Order orderInfo = new Order();
 				orderInfo.setOrderID(rs.getInt("orderID"));
 				orderInfo.setUserName(rs.getString("userName"));
@@ -236,7 +246,7 @@ public class QueryOrderManager {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			DBUtils.close(rs, stmt, conn);
 		}
 		return list;

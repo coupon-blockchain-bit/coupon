@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta charset="utf-8">
-<title>登录</title>
+<title>Login</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/main.css">
 <link href="<%=basePath%>css/footer.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/login.css">
@@ -54,13 +54,13 @@ function checkForm() {
 	// alert("ada");
 	var userName = document.getElementById("userName").value;
 	if (userName == "") {
-		alert("用户名不能为空！");
+		alert("Sorry,Username cannot be empty.");
 		return false;
 	}
 	
 	var password = document.getElementById("password").value;
 	if (password == "") {
-		alert("密码不能为空！");
+		alert("Sorry,Password cannot be empty.");
 		return false;
 	}
 }
@@ -72,16 +72,16 @@ function checkForm() {
 <!--
 <div class="header">
   <div class="span1">
-    <div class="logo"> <img src="images/logo.png" alt="积分兑换平台"/> </div>
+    <div class="logo"> <img src="images/logo.png" alt="Bonus exchange platform"/> </div>
   </div>
   <div class="span2">
     <div class="mainNav">
       <ul>
-        <li><a href="index.jsp"> 主页</a></li>
-        <li><a href="reference.jsp"> 参考价</a></li>
-        <li><a href="/bonusPointsExchange/QueryLatestOrder">最新发布</a></li>
-        <li><a href="/bonusPointsExchange/actionServlet?actionCode=bindShop&methodCode=find_bindedShops">发起交易</a></li>
-        <li><a href=#>我的账户</a></li>
+        <li><a href="index.jsp"> Homepage</a></li>
+        <li><a href="reference.jsp"> Reference price</a></li>
+        <li><a href="/bonusPointsExchange/QueryLatestOrder">Newly released</a></li>
+        <li><a href="/bonusPointsExchange/actionServlet?actionCode=bindShop&methodCode=find_bindedShops">Initiate deal</a></li>
+        <li><a href=#>My account</a></li>
       </ul>
     </div>
   </div>
@@ -90,28 +90,28 @@ function checkForm() {
 <!--这是main_page-->
   <div class="login-frame">
     <div>
-      <p class="title">&nbsp;&nbsp;用户登录&nbsp;&nbsp;<span class="title1">USER LOGIN</span><span class="title1 right"><a href="login_shop.jsp">前往商家登录</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+      <p class="title">&nbsp;&nbsp;Login as User&nbsp;&nbsp;<span class="title1">USER LOGIN</span><span class="title1 right"><a href="login_shop.jsp">Login as Merchant</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
     </div>
     <div class="span3">
-      <div class="ad"> <img src="images/ad3.jpg" alt="广告"/> </div>
+      <div class="ad"> <img src="images/ad3.jpg" alt="Advertisement"/> </div>
     </div>
     <div class="span4">
       <form name="form_login" class="login-form normal-font" action="/bonusPointsExchange/actionServlet" method="post" onsubmit="return checkForm();">
         <table cellspacing="2">
           <tr>
-            <td style="text-indent:1em;">用户名：</td>            
+            <td style="text-indent:1em;">Username:</td>            
             <td><input name="userName" type="text" id="userName" maxlength="20"></td>
           </tr>
           <tr>
-             <td style="text-indent:1em;">密码：</td>
+             <td style="text-indent:1em;">Password:</td>
              <td><input name="passwd" type="password" id="password" maxlength="20"></td>
           </tr>
           <tr>
-            <td class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="提交"></td>
-            <td class="mid"><input name="reset" type="reset" class="submitBtn" id="reset" value="重置"></td>
+            <td class="mid"><input name="submit" type="submit" class="submitBtn" id="submit" value="Submit"></td>
+            <td class="mid"><input name="reset" type="reset" class="submitBtn" id="reset" value="Reset"></td>
           </tr>
         </table>
-       <div class="mes" ><a href="regist.jsp">免费注册&nbsp;&nbsp; </a><a href="/bonusPointsExchange/retrievePassword_1.jsp?method=forgetPasswd_user">忘记密码</a></div>
+       <div class="mes" ><a href="regist.jsp">Free registration&nbsp;&nbsp; </a><a href="/bonusPointsExchange/retrievePassword_1.jsp?method=forgetPasswd_user">Forgot password?</a></div>
        <input type="hidden" name="actionCode" value="log"/>
        <input type="hidden" name="methodCode" value="login"/>
       </form>
